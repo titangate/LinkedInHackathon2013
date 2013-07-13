@@ -89,8 +89,23 @@ static NSMutableArray *sBackgroundTilesNums = nil;
     else{
         SKTextureAtlas *tileAtlas = [SKTextureAtlas atlasNamed:@"Tiles"];
         SKSpriteNode *newNode = [sBackgroundTiles objectAtIndex:tileInd];
-        newNode.texture = [tileAtlas textureNamed:[NSString stringWithFormat:@"tile%d.png", 0]];
+        newNode.texture = [tileAtlas textureNamed:[NSString stringWithFormat:@"tile%d.png", (tileType-1)]];
         [sBackgroundTilesNums replaceObjectAtIndex:tileInd withObject: [NSNumber numberWithInt:(tileType-1)]];
+        return true;
+    }
+}
+
+- (BOOL) makeDryAtX:(int)x atY:(int)y {
+    int tileInd =[TileMap tileNumAtX:x atY:y];
+    int tileType = [[sBackgroundTilesNums objectAtIndex:tileInd] integerValue];
+    if(tileType>=4){
+        return false;
+    }
+    else{
+        SKTextureAtlas *tileAtlas = [SKTextureAtlas atlasNamed:@"Tiles"];
+        SKSpriteNode *newNode = [sBackgroundTiles objectAtIndex:tileInd];
+        newNode.texture = [tileAtlas textureNamed:[NSString stringWithFormat:@"tile%d.png", (tileType+1)]];
+        [sBackgroundTilesNums replaceObjectAtIndex:tileInd withObject: [NSNumber numberWithInt:(tileType+1)]];
         return true;
     }
 }

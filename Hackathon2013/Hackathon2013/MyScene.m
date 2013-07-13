@@ -21,7 +21,8 @@
     tileMap = [[TileMap alloc] init];
     [self addChild:tileMap];
     for(NSInteger i=0; i<32; i++){
-        [tileMap makeWetAtX:i atY:i];
+        //for(NSInteger j=0; j<32; j++)
+        [tileMap makeDryAtX:i atY:31-i];
     }
     for (NSInteger i = 0; i<30; i++) {
         Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
