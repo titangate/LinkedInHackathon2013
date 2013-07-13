@@ -27,6 +27,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 @interface RVOHub () {
     RVOSimulator *simulator;
     int agentCount;
+    int obstacleCount;
 }
 
 @end
@@ -35,6 +36,12 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 }
 @property (nonatomic) RVOSimulator *simulator;
 @property (nonatomic) NSInteger tag;
+@end
+
+@interface RVOObstacle ()
+@property (nonatomic) RVOSimulator *simulator;
+@property (nonatomic) NSInteger tag;
+- (id)initWithVerticies:(NSArray *)verticies;
 @end
 
 @implementation RVOHub
@@ -70,6 +77,25 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
     simulator->addAgent(CGPointToVector2(position), radius*2, 10.0f, 10.0f, 1.5f, radius, speed);
     agentCount++;
     return agent;
+}
+
+- (RVOObstacle *)createObstacleWithVerticies:(NSArray *)verticies {
+    RVOObstacle *obstacle = [[RVOObstacle alloc]initWithVerticies:verticies];
+    obstacle.tag = obstacleCount;
+    obstacle.simulator = simulator;
+    obstacle.lineWidth = 1.0;
+    obstacle.glowWidth = 2.0;
+    obstacle.strokeColor = [SKColor colorWithWhite:1 alpha:1];
+    std::vector<Vector2> stdVerticies;
+    for (NSValue *value in verticies) {
+        CGPoint point;
+        [value getValue:&point];
+        stdVerticies.push_back(CGPointToVector2(point));
+    }
+    simulator->addObstacle(stdVerticies);
+    obstacleCount++;
+    simulator->processObstacles();
+    return obstacle;
 }
 
 @end
@@ -127,6 +153,28 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 - (BOOL)reachedGoal {
     CGFloat distance = distanceBetweenCGPoint(self.position, self.goal);
     return distance < self.radius * 4;
+}
+
+@end
+
+@implementation RVOObstacle
+
+- (id)initWithVerticies:(NSArray *)verticies {
+    self = [super init];
+    if (self) {
+        _verticies = verticies;
+        CGPath *path = CGPathCreateMutable();
+        CGPoint point, startpoint;
+        [(NSValue *)[verticies objectAtIndex:0] getValue:&startpoint];
+        CGPathMoveToPoint (path, NULL, startpoint.x, startpoint.y);
+        for (NSInteger k = 1; k < [verticies count]; k++) {
+            [(NSValue *)[verticies objectAtIndex:k] getValue:&point];
+            CGPathAddLineToPoint (path, NULL, point.x, point.y);
+        }
+        CGPathAddLineToPoint (path, NULL, startpoint.x, startpoint.y);
+        self.path = path;
+    }
+    return self;
 }
 
 @end

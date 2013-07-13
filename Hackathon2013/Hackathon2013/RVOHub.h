@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 
-@class RVOAgent;
+@class RVOAgent, RVOObstacle;
 
 @interface RVOHub : NSObject
 @property (nonatomic,assign) float timeStep;
 - (void)update;
 - (RVOAgent *)createAgentAtPosition:(CGPoint)position withRadius:(CGFloat)radius withSpeed:(CGFloat)speed;
+- (RVOObstacle *)createObstacleWithVerticies:(NSArray *)verticies;
 @end
 
 @interface RVOAgent : NSObject
@@ -27,4 +28,8 @@
 @property (nonatomic) BOOL isMoving;
 - (BOOL)reachedGoal;
 - (void)update;
+@end
+
+@interface RVOObstacle : SKShapeNode
+@property (nonatomic, readonly) NSArray *verticies;
 @end
