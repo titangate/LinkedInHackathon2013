@@ -14,9 +14,12 @@
 @implementation MyScene {
     RVOHub *hub;
     NSMutableArray *agents;
+    TileMap *tileMap;
 }
 
 - (void)initDemo {
+    tileMap = [[TileMap alloc] init];
+    [self addChild:tileMap];
     for (NSInteger i = 0; i<30; i++) {
         Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
         unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];

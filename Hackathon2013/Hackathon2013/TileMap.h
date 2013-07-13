@@ -15,5 +15,6 @@
 
 #define kWorldCenter 2048
 
-- (BOOL) isObstacle:(CGPoint)point1 point2:(CGPoint)point2;
++ (BOOL) isObstacle:(int)x atY:(int)y;
++ (BOOL) isSlow:(int)x atY:(int)y;
 @end
