@@ -11,6 +11,8 @@
 		BB29785E1790F4140045E61B /* KdTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978551790F4140045E61B /* KdTree.cpp */; };
 		BB29785F1790F4140045E61B /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978571790F4140045E61B /* Obstacle.cpp */; };
 		BB2978601790F4140045E61B /* RVOSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB29785A1790F4140045E61B /* RVOSimulator.cpp */; };
+		BB2978651790F52B0045E61B /* RVOHub.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB2978641790F52B0045E61B /* RVOHub.mm */; };
+		BB2978681790FD9B0045E61B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2978671790FD9B0045E61B /* Utils.m */; };
 		BB958F9E1790EE520012E2A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958F9D1790EE520012E2A8 /* Foundation.framework */; };
 		BB958FA01790EE520012E2A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958F9F1790EE520012E2A8 /* CoreGraphics.framework */; };
 		BB958FA21790EE520012E2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958FA11790EE520012E2A8 /* UIKit.framework */; };
@@ -53,6 +55,10 @@
 		BB29785A1790F4140045E61B /* RVOSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RVOSimulator.cpp; sourceTree = "<group>"; };
 		BB29785B1790F4140045E61B /* RVOSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVOSimulator.h; sourceTree = "<group>"; };
 		BB29785C1790F4140045E61B /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
+		BB2978631790F52B0045E61B /* RVOHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVOHub.h; sourceTree = "<group>"; };
+		BB2978641790F52B0045E61B /* RVOHub.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RVOHub.mm; sourceTree = "<group>"; };
+		BB2978661790FD9B0045E61B /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		BB2978671790FD9B0045E61B /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		BB958F9A1790EE520012E2A8 /* Hackathon2013.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon2013.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB958F9D1790EE520012E2A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BB958F9F1790EE520012E2A8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -118,6 +124,8 @@
 				BB29785A1790F4140045E61B /* RVOSimulator.cpp */,
 				BB29785B1790F4140045E61B /* RVOSimulator.h */,
 				BB29785C1790F4140045E61B /* Vector2.h */,
+				BB2978631790F52B0045E61B /* RVOHub.h */,
+				BB2978641790F52B0045E61B /* RVOHub.mm */,
 			);
 			name = RVO;
 			sourceTree = "<group>";
@@ -168,6 +176,8 @@
 				BB958FBD1790EE530012E2A8 /* Spaceship.png */,
 				BB958FBF1790EE530012E2A8 /* Images.xcassets */,
 				BB958FA61790EE520012E2A8 /* Supporting Files */,
+				BB2978661790FD9B0045E61B /* Utils.h */,
+				BB2978671790FD9B0045E61B /* Utils.m */,
 			);
 			path = Hackathon2013;
 			sourceTree = "<group>";
@@ -303,9 +313,11 @@
 				BB2978601790F4140045E61B /* RVOSimulator.cpp in Sources */,
 				BB29785D1790F4140045E61B /* Agent.cpp in Sources */,
 				BB958FBC1790EE530012E2A8 /* MyScene.m in Sources */,
+				BB2978681790FD9B0045E61B /* Utils.m in Sources */,
 				BB29785E1790F4140045E61B /* KdTree.cpp in Sources */,
 				BB958FB91790EE530012E2A8 /* ViewController.m in Sources */,
 				BB958FB01790EE520012E2A8 /* AppDelegate.m in Sources */,
+				BB2978651790F52B0045E61B /* RVOHub.mm in Sources */,
 				BB958FAC1790EE520012E2A8 /* main.m in Sources */,
 				BB29785F1790F4140045E61B /* Obstacle.cpp in Sources */,
 			);
