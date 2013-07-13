@@ -63,6 +63,7 @@
     _player = owner;
     self.colorBlendFactor = 1.0;
     self.color = owner.color;
+    self.HP = 1.0;
 }
 
 - (Player *)owner {

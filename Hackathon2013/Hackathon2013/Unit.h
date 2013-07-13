@@ -23,7 +23,7 @@
 @property (nonatomic) RVOAgent *agent;
 @property (nonatomic) CGPoint goal;
 @property (nonatomic) Player *owner;
-@property (nonatomic) Unit *attackingUnit;
+@property (nonatomic, weak) Unit *attackingUnit;
 @property (nonatomic) float HP;
 @property (nonatomic, weak) id <UnitDelegate> delegate;
 - (void)updateWithAgentWithDT:(float)delta;
