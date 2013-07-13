@@ -19,6 +19,7 @@
 - (RVOObstacle *)createObstacleWithVerticies:(NSArray *)verticies;
 - (void)removeObstacle:(RVOObstacle *)obstacle;
 @property (nonatomic) NSArray *agents;
+@property (nonatomic) NSArray *allAgents;
 @property (nonatomic) NSArray *obstacles;
 @end
 
@@ -30,6 +31,8 @@
 @property (readonly) CGFloat radius;
 @property (nonatomic) CGPoint goal;
 @property (nonatomic) BOOL isMoving;
+@property (nonatomic, readonly) NSArray *neighbours;
+@property (nonatomic, assign) id controller;
 - (BOOL)reachedGoal;
 - (void)update;
 @end

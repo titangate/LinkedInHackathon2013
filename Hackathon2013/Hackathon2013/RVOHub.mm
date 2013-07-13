@@ -33,9 +33,11 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 @end
 
 @interface RVOAgent () {
+    NSArray *cachedNeighbours;
 }
 @property (nonatomic) RVOSimulator *simulator;
 @property (nonatomic) NSInteger tag;
+@property (nonatomic) RVOHub *hub;
 @end
 
 @interface RVOObstacle ()
@@ -46,6 +48,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 
 @interface RVOHub () {
     NSMutableArray *_agents;
+    NSMutableArray *_allAgents;
     NSMutableArray *_agentReUsePool;
     NSMutableArray *_obstacles;
 }
@@ -58,6 +61,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
     if (self) {
         _agents = [[NSMutableArray alloc]init];
         _agentReUsePool = [[NSMutableArray alloc]init];
+        _allAgents = [[NSMutableArray alloc]init];
         _obstacles = [[NSMutableArray alloc]init];
         simulator = new RVOSimulator();
         simulator->setTimeStep(0.25);
@@ -93,6 +97,8 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
         agent.simulator = simulator;
         simulator->addAgent(CGPointToVector2(position), radius*3, radius*2, 10.0f, 1.5f, radius, speed);
         [_agents addObject:agent];
+        [_allAgents addObject:agent];
+        agent.hub = self;
         agentCount++;
     }
     return agent;
@@ -174,8 +180,15 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 }
 
 - (void)update {
+    cachedNeighbours = nil;
     if (self.isMoving) {
         _simulator->setAgentPrefVelocity(self.tag, CGPointToVector2(CGPointMake(self.goal.x - self.position.x, self.goal.y - self.position.y)));
+        // nudge
+        float angle = std::rand() * 2.0f * M_PI / RAND_MAX;
+		float dist = std::rand() * 0.0001f / RAND_MAX;
+        
+		_simulator->setAgentPrefVelocity(self.tag, _simulator->getAgentPrefVelocity(self.tag) +
+		                          dist * RVO::Vector2(std::cos(angle), std::sin(angle)));
     } else {
         _simulator->setAgentPrefVelocity(self.tag, Vector2(0,0));
     }
@@ -185,6 +198,19 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 - (BOOL)reachedGoal {
     CGFloat distance = distanceBetweenCGPoint(self.position, self.goal);
     return distance < self.radius * 4;
+}
+
+- (NSArray *)neighbours {
+    if (!cachedNeighbours) {
+        const size_t maxNumOfNeighbours = _simulator->getAgentNumAgentNeighbors(self.tag);
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSInteger i = 0;i<maxNumOfNeighbours;i++) {
+            const size_t neighbourTag = _simulator->getAgentAgentNeighbor(self.tag, i);
+            [array addObject:[self.hub.allAgents objectAtIndex:neighbourTag]];
+        }
+        cachedNeighbours = array;
+    }
+    return cachedNeighbours;
 }
 
 @end
