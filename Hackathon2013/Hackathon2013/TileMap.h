@@ -9,14 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
 @interface TileMap : SKNode
-#define kWorldTileDivisor 32  // number of tiles
-#define kWorldSize 4096       // pixel size of world (square)
+#define kWorldTileDivisor 64  // number of tiles
+#define kWorldSize 1024       // pixel size of world (square)
 #define kWorldTileSize (kWorldSize / kWorldTileDivisor)
 
-#define kWorldCenter 2048
+#define kWorldCenter 512
 
 + (BOOL) isObstacle:(int)x atY:(int)y;
 + (BOOL) isSlow:(int)x atY:(int)y;
 - (BOOL) makeWetAtX:(int)x atY:(int)y;
 - (BOOL) makeDryAtX:(int)x atY:(int)y;
+- (int) drainAtX:(int)x atY:(int)y;
+- (NSArray *) getConnectedComponents;
++ (NSArray*) calcConnCompAtX:(int)x atY:(int)y withUnEx: (NSMutableArray*)unexplored;
 @end

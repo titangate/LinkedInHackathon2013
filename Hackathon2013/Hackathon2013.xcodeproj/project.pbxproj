@@ -39,9 +39,13 @@
 		BB958FC91790EE530012E2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958FA11790EE520012E2A8 /* UIKit.framework */; };
 		BB958FD11790EE530012E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB958FCF1790EE530012E2A8 /* InfoPlist.strings */; };
 		BB958FD31790EE530012E2A8 /* Hackathon2013Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB958FD21790EE530012E2A8 /* Hackathon2013Tests.m */; };
-		F327F0AF17911E080053623B /* Tiles.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F327F0AE17911E080053623B /* Tiles.atlas */; };
 		F327F0B21791218E0053623B /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = F327F0B11791217B0053623B /* TileMap.m */; };
 		F327F0B517913DEF0053623B /* ConvexHullUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F327F0B417913DEF0053623B /* ConvexHullUtil.m */; };
+		F36E2C5217917958006B67B8 /* tile0.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C4D17917958006B67B8 /* tile0.png */; };
+		F36E2C5317917958006B67B8 /* tile1.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C4E17917958006B67B8 /* tile1.png */; };
+		F36E2C5417917958006B67B8 /* tile2.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C4F17917958006B67B8 /* tile2.png */; };
+		F36E2C5517917958006B67B8 /* tile3.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C5017917958006B67B8 /* tile3.png */; };
+		F36E2C5617917958006B67B8 /* tile4.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C5117917958006B67B8 /* tile4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,11 +111,15 @@
 		BB958FCE1790EE530012E2A8 /* Hackathon2013Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hackathon2013Tests-Info.plist"; sourceTree = "<group>"; };
 		BB958FD01790EE530012E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BB958FD21790EE530012E2A8 /* Hackathon2013Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hackathon2013Tests.m; sourceTree = "<group>"; };
-		F327F0AE17911E080053623B /* Tiles.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Tiles.atlas; sourceTree = "<group>"; };
 		F327F0B01791217B0053623B /* TileMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
 		F327F0B11791217B0053623B /* TileMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		F327F0B317913DEF0053623B /* ConvexHullUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvexHullUtil.h; sourceTree = "<group>"; };
 		F327F0B417913DEF0053623B /* ConvexHullUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvexHullUtil.m; sourceTree = "<group>"; };
+		F36E2C4D17917958006B67B8 /* tile0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile0.png; sourceTree = "<group>"; };
+		F36E2C4E17917958006B67B8 /* tile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile1.png; sourceTree = "<group>"; };
+		F36E2C4F17917958006B67B8 /* tile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile2.png; sourceTree = "<group>"; };
+		F36E2C5017917958006B67B8 /* tile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile3.png; sourceTree = "<group>"; };
+		F36E2C5117917958006B67B8 /* tile4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +274,18 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		F36E2C4C17917918006B67B8 /* Tiles.atlas */ = {
+			isa = PBXGroup;
+			children = (
+				F36E2C4D17917958006B67B8 /* tile0.png */,
+				F36E2C4E17917958006B67B8 /* tile1.png */,
+				F36E2C4F17917958006B67B8 /* tile2.png */,
+				F36E2C5017917958006B67B8 /* tile3.png */,
+				F36E2C5117917958006B67B8 /* tile4.png */,
+			);
+			name = Tiles.atlas;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -344,13 +364,17 @@
 			files = (
 				BB958FBE1790EE530012E2A8 /* Spaceship.png in Resources */,
 				BB958FC01790EE530012E2A8 /* Images.xcassets in Resources */,
+				F36E2C5617917958006B67B8 /* tile4.png in Resources */,
+				F36E2C5217917958006B67B8 /* tile0.png in Resources */,
 				BB958FB61790EE530012E2A8 /* Main_iPad.storyboard in Resources */,
 				BB2073E51791DBA5003C5B2E /* fist.atlas in Resources */,
 				BB2073E61791DBA5003C5B2E /* crane.atlas in Resources */,
+				F36E2C5417917958006B67B8 /* tile2.png in Resources */,
 				BB958FB31790EE530012E2A8 /* Main_iPhone.storyboard in Resources */,
 				BB6DEA371791487F00BB29FC /* temple.png in Resources */,
 				BB958FAA1790EE520012E2A8 /* InfoPlist.strings in Resources */,
-				F327F0AF17911E080053623B /* Tiles.atlas in Resources */,
+				F36E2C5317917958006B67B8 /* tile1.png in Resources */,
+				F36E2C5517917958006B67B8 /* tile3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
