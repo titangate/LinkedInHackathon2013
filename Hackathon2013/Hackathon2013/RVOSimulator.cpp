@@ -124,7 +124,11 @@ namespace RVO {
 
 		return agents_.size() - 1;
 	}
-
+    
+    void RVOSimulator::removeAgent(size_t agentNo) {
+        agents_.erase(agents_.begin() + agentNo);
+    }
+    
 	size_t RVOSimulator::addAgent(const Vector2 &position, float neighborDist, size_t maxNeighbors, float timeHorizon, float timeHorizonObst, float radius, float maxSpeed, const Vector2 &velocity)
 	{
 		Agent *agent = new Agent(this);
@@ -144,7 +148,11 @@ namespace RVO {
 
 		return agents_.size() - 1;
 	}
-
+    
+    void RVOSimulator::removeObstacle(size_t obstacleNo) {
+        obstacles_.erase(obstacles_.begin() + obstacleNo);
+    }
+    
 	size_t RVOSimulator::addObstacle(const std::vector<Vector2> &vertices)
 	{
 		if (vertices.size() < 2) {

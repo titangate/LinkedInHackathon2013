@@ -44,12 +44,19 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 - (id)initWithVerticies:(NSArray *)verticies;
 @end
 
+@interface RVOHub () {
+    NSMutableArray *_agents;
+    NSMutableArray *_obstacles;
+}
+@end
+
 @implementation RVOHub
 
 - (id)init {
     self = [super init];
     if (self) {
-        
+        _agents = [[NSMutableArray alloc]init];
+        _obstacles = [[NSMutableArray alloc]init];
         simulator = new RVOSimulator();
         simulator->setTimeStep(0.25);
         // default parameter of the agents
@@ -75,8 +82,17 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
     agent.tag = agentCount;
     agent.simulator = simulator;
     simulator->addAgent(CGPointToVector2(position), radius*2, 10.0f, 10.0f, 1.5f, radius, speed);
+    [_agents addObject:agent];
     agentCount++;
     return agent;
+}
+
+- (void)removeAgent:(RVOAgent *)agent {
+    simulator->removeAgent(agent.tag);
+    [_agents removeObject:agent];
+    for (NSInteger i = 0; i < [_agents count]; i++) {
+        ((RVOAgent *)[_agents objectAtIndex:i]).tag = i;
+    }
 }
 
 - (RVOObstacle *)createObstacleWithVerticies:(NSArray *)verticies {

@@ -158,7 +158,7 @@ namespace RVO {
 		 * \brief      Destroys this simulator instance.
 		 */
 		~RVOSimulator();
-
+        
 		/**
 		 * \brief      Adds a new agent with default properties to the
 		 *             simulation.
@@ -168,6 +168,8 @@ namespace RVO {
 		 *             defaults have not been set.
 		 */
 		size_t addAgent(const Vector2 &position);
+        
+		void removeAgent(size_t agentNo);
 
 		/**
 		 * \brief      Adds a new agent to the simulation.
@@ -232,6 +234,9 @@ namespace RVO {
 		 *             two-dimensional position and two-dimensional velocity of
 		 *             each agent.
 		 */
+        
+        void removeObstacle(size_t obstacleNo);
+        
 		void doStep();
 
 		/**

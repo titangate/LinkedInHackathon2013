@@ -24,6 +24,18 @@
         [self addChild:unit];
         [agents addObject:unit];
     }
+    CGPoint points[] = {
+        {100,100},
+        {300,100},
+        {150,300}
+    };
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (NSInteger i = 0; i<3; i++) {
+        NSValue *value = [NSValue valueWithCGPoint:points[i]];
+        [array addObject:value];
+    }
+    RVOObstacle *obstacle = [hub createObstacleWithVerticies:array];
+    [self addChild:obstacle];
 }
 
 -(id)initWithSize:(CGSize)size {    
@@ -50,7 +62,9 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
+    Unit *unit = [agents objectAtIndex:0];
+    [hub removeAgent:unit.agent];
+    [agents removeObject:unit];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         

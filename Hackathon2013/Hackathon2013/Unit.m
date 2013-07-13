@@ -20,8 +20,11 @@
 }
 
 - (void)updateWithAgent {
-    SKAction *action = [SKAction rotateToAngle:self.agent.angle duration:0];
-    [self runAction:action];
+    if (!(self.agent.currentVelocity.x == 0 && self.agent.currentVelocity.y == 0)) {
+        SKAction *action = [SKAction rotateToAngle:self.agent.angle duration:0./30.0];
+        [self runAction:action];
+    }
+    
     [self.agent update];
     if ([self.agent reachedGoal]) {
         self.agent.isMoving = NO;

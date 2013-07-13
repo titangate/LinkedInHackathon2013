@@ -15,7 +15,11 @@
 @property (nonatomic,assign) float timeStep;
 - (void)update;
 - (RVOAgent *)createAgentAtPosition:(CGPoint)position withRadius:(CGFloat)radius withSpeed:(CGFloat)speed;
+- (void)removeAgent:(RVOAgent *)agent;
 - (RVOObstacle *)createObstacleWithVerticies:(NSArray *)verticies;
+- (void)removeObstacle:(RVOObstacle *)obstacle;
+@property (nonatomic) NSArray *agents;
+@property (nonatomic) NSArray *obstacles;
 @end
 
 @interface RVOAgent : NSObject
