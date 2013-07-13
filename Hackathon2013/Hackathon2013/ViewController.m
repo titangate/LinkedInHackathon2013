@@ -12,6 +12,7 @@
 @implementation ViewController {
     UIPanGestureRecognizer *panGestureRecognizer;
     UIPinchGestureRecognizer *pinchGestureRecognizer;
+    UILongPressGestureRecognizer *longPressGestureRecognizer;
     MyScene * scene;
 }
 
@@ -36,6 +37,11 @@
     
     pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinchGestureRecognizer:)];
     [self.view addGestureRecognizer:pinchGestureRecognizer];
+    
+    longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(handleLongPressGestureRecognizer:)];
+    [self.view addGestureRecognizer:longPressGestureRecognizer];
+    
+    
 }
 
 - (void)handlePanGestureRecognzier:(UIPanGestureRecognizer *)gestureRecognizer {
@@ -67,6 +73,19 @@
         default:
             break;
     }
+}
+
+- (void)handleLongPressGestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer {
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            scene.pressing = YES;
+            break;
+        case UIGestureRecognizerStateEnded:
+            scene.pressing = NO;
+        default:
+            break;
+    }
+
 }
 
 - (BOOL)shouldAutorotate

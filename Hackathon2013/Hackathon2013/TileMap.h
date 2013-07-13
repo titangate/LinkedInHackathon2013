@@ -20,6 +20,7 @@
 - (BOOL) makeWetAtX:(int)x atY:(int)y;
 - (BOOL) makeDryAtX:(int)x atY:(int)y;
 - (int) drainAtX:(int)x atY:(int)y;
+- (int) dropAtX:(int)x atY:(int)y;
 - (NSArray *) getConnectedComponents;
 + (NSArray*) calcConnCompAtX:(int)x atY:(int)y withUnEx: (NSMutableArray*)unexplored;
 @end

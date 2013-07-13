@@ -14,10 +14,10 @@
     self = [super init];
     sTileColors =[[NSMutableArray alloc] initWithCapacity:5];
     [(NSMutableArray *)sTileColors addObject:[UIColor redColor]];
-    [(NSMutableArray *)sTileColors addObject:[UIColor orangeColor]];
-    [(NSMutableArray *)sTileColors addObject:[UIColor yellowColor]];
-    [(NSMutableArray *)sTileColors addObject:[UIColor greenColor]];
-    [(NSMutableArray *)sTileColors addObject:[UIColor blueColor]];
+    [(NSMutableArray *)sTileColors addObject:[UIColor colorWithRed:232/255.0 green: 192/255.0 blue:81/255.0 alpha:1]];
+    [(NSMutableArray *)sTileColors addObject:[UIColor colorWithRed:87.0/255 green:191.0/255 blue:23.0/255 alpha:1.0]];
+    [(NSMutableArray *)sTileColors addObject:[UIColor colorWithRed:37.0/255 green:179.0/255 blue:108.0/255 alpha:1]];
+    [(NSMutableArray *)sTileColors addObject:[UIColor colorWithRed:27.0/255 green:183.0/255 blue:207.0/255 alpha:1]];
     if (self) {
         [TileMap loadWorldTiles];
         [self addBackgroundTiles];
@@ -92,13 +92,15 @@ static NSArray *sTileColors = nil;
 - (BOOL) makeWetAtX:(int)x atY:(int)y {
     int tileInd =[TileMap tileNumAtX:x atY:y];
     int tileType = [[sBackgroundTilesNums objectAtIndex:tileInd] integerValue];
-    if(tileType>=0){
+    if(tileType>=4){
         return false;
     }
     else{
         //SKTextureAtlas *tileAtlas = [SKTextureAtlas atlasNamed:@"Tiles"];
         SKSpriteNode *newNode = [sBackgroundTiles objectAtIndex:tileInd];
-        newNode.color=[sTileColors objectAtIndex: tileType+1];
+        SKAction *action = [SKAction colorizeWithColor:[sTileColors objectAtIndex:tileType+1 ] colorBlendFactor:1 duration:.5];
+        [newNode runAction:action];
+        //newNode.color=[sTileColors objectAtIndex: tileType+1];
         //newNode.texture = [tileAtlas textureNamed:[NSString stringWithFormat:@"tile%d.png", (tileType+1)]];
         [sBackgroundTilesNums replaceObjectAtIndex:tileInd withObject: [NSNumber numberWithInt:(tileType+1)]];
         return true;
@@ -114,8 +116,8 @@ static NSArray *sTileColors = nil;
     else{
         //SKTextureAtlas *tileAtlas = [SKTextureAtlas atlasNamed:@"Tiles"];
         SKSpriteNode *newNode = [sBackgroundTiles objectAtIndex:tileInd];
-        newNode.color=[sTileColors objectAtIndex: tileType-1];
-        //newNode.texture = [tileAtlas textureNamed:[NSString stringWithFormat:@"tile%d.png", (tileType-1)]];
+        SKAction *action = [SKAction colorizeWithColor:[sTileColors objectAtIndex:tileType-1 ] colorBlendFactor:1 duration:.5];
+        [newNode runAction:action];
         [sBackgroundTilesNums replaceObjectAtIndex:tileInd withObject: [NSNumber numberWithInt:(tileType-1)]];
         return true;
     }

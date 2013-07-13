@@ -10,10 +10,12 @@
 
 NS_ENUM(NSInteger, OPMODE) {
     OP_DRAIN,
-    OP_FILL
+    OP_FILL,
+    OP_WORKING,
 };
 
 @interface MyScene : SKScene
 @property (nonatomic) CGPoint offset;
 @property (nonatomic) enum OPMODE mode;
+@property (nonatomic) BOOL pressing;
 @end

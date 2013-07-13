@@ -131,7 +131,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 }
 
 - (void)removeObstacle:(RVOObstacle *)obstacle {
-    [_obstacles removeObject:obstacle];
+    //[_obstacles removeObject:obstacle];
     simulator->removeObstacle(obstacle.tag, [obstacle.verticies count]);
     simulator->processObstacles();
 }

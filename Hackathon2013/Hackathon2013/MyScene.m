@@ -30,6 +30,7 @@
     NSTimer *timer;
     AIManager *aiManager;
     SKLabelNode *myLabel;
+    CGPoint location;
 }
 
 - (void)unitKilledInBattle:(Unit *)unit {
@@ -58,47 +59,65 @@
     world = [[SKNode alloc]init];
     [self addChild:world];
     [world addChild:tileMap];
-    [tileMap drainAtX:16 atY:16];
-    [tileMap drainAtX:16 atY:16];
-    [tileMap drainAtX:16 atY:16];
-    [tileMap drainAtX:16 atY:16];
-    [tileMap drainAtX:16 atY:16];
-    [tileMap drainAtX:16 atY:16];
+    for (NSInteger i=0; i<6; i++) {
+        
+        //[tileMap drainAtX:32 atY:32];
+    }
     NSMutableArray *obstacles = [[NSMutableArray alloc]init];
     NSArray * obs = [tileMap getConnectedComponents];
     for(NSArray* ob in obs){
         RVOObstacle *obstacle = [hub createObstacleWithVerticies:ob];
         [obstacles addObject:obstacle];
-        [world addChild:obstacle];
     }
-    for (NSInteger i = 0; i<30; i++) {
-        Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
-        unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
-        unit.agent.controller = unit;
-        unit.size = CGSizeMake(32,32);
-        unit.owner = player;
-        unit.delegate = self;
-        [world addChild:unit];
-        [agents addObject:unit];
-        
-        
-        unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
-        unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 400) withRadius:16.0 withSpeed:48.0];
-        unit.agent.controller = unit;
-        unit.size = CGSizeMake(32,32);
-        unit.owner = enemy;
-        unit.delegate = self;
-        [world addChild:unit];
-        [agents addObject:unit];
-    }
-    [self createTempleAtLocation:CGPointMake(100, 100)].owner = player;
-    [self createTempleAtLocation:CGPointMake(500, 500)].owner = enemy;
+    
+    [self createTempleAtLocation:CGPointMake(250, 250)].owner = player;
+    [self createTempleAtLocation:CGPointMake(-250, -250)].owner = enemy;
+    [self createTempleAtLocation:CGPointMake(250, -250)];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerTicked) userInfo:nil repeats:YES];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(terrainTick) userInfo:nil repeats:YES];
     aiManager = [[AIManager alloc]init];
     aiManager.temples = temples;
     aiManager.players = @[player,enemy];
     aiManager.obstacles = obstacles;
+    self.mode = OP_DRAIN;
+}
+
+- (void)terrainTick {
+    if (self.pressing) {
+        if (self.mode == OP_DRAIN) {
+            
+            [tileMap drainAtX:location.x atY:location.y];
+            for (RVOObstacle *ob in hub.obstacles) {
+                [hub removeObstacle:ob];
+            }
+            
+            hub.obstacles = [[NSMutableArray alloc]init];
+            NSMutableArray *obstacles = [[NSMutableArray alloc]init];
+            NSArray * obs = [tileMap getConnectedComponents];
+            for(NSArray* ob in obs){
+                RVOObstacle *obstacle = [hub createObstacleWithVerticies:ob];
+                [obstacles addObject:obstacle];
+            }
+            
+            aiManager.obstacles = obstacles;
+        } else {
+            
+            [tileMap dropAtX:location.x atY:location.y];
+            for (RVOObstacle *ob in hub.obstacles) {
+                [hub removeObstacle:ob];
+            }
+            hub.obstacles = [[NSMutableArray alloc]init];
+            NSMutableArray *obstacles = [[NSMutableArray alloc]init];
+            NSArray * obs = [tileMap getConnectedComponents];
+            for(NSArray* ob in obs){
+                RVOObstacle *obstacle = [hub createObstacleWithVerticies:ob];
+                [obstacles addObject:obstacle];
+            }
+            
+            aiManager.obstacles = obstacles;
+        }
+    }
 }
 
 - (void)timerTicked {
@@ -149,8 +168,8 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:world];
-        // TODO: use things
+        location = [touch locationInNode:world];
+        location = (CGPoint){location.x/16 + 32,64-(location.y/16 + 32)};
     }
 }
 
@@ -188,9 +207,9 @@
 - (void)setMode:(enum OPMODE)mode {
     _mode = mode;
     if (mode == OP_FILL) {
-        myLabel.text = @"DRAINING";
-    } else {
         myLabel.text = @"FILLING";
+    } else {
+        myLabel.text = @"DRAINING";
     }
 }
 

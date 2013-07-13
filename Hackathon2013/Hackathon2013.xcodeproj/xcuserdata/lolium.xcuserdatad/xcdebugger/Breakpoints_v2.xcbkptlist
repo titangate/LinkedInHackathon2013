@@ -20,13 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/MyScene.m"
-            timestampString = "395437118.177084"
+            timestampString = "395443131.079379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "-update:"
-            landmarkType = "5">
+            startingLineNumber = "217"
+            endingLineNumber = "217">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -36,13 +34,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/MyScene.m"
-            timestampString = "395437118.177084"
+            timestampString = "395443131.079379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "-update:"
-            landmarkType = "5">
+            startingLineNumber = "218"
+            endingLineNumber = "218">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -52,12 +48,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/MyScene.m"
-            timestampString = "395434008.817575"
+            timestampString = "395443131.079379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-timerTicked"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-initWithSize:"
             landmarkType = "5">
             <Locations>
                <Location
@@ -98,11 +94,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/AIManager.m"
-            timestampString = "395431077.508697"
+            timestampString = "395442517.895297"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "-update"
             landmarkType = "5">
          </BreakpointContent>
@@ -114,11 +110,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/AIManager.m"
-            timestampString = "395431077.508697"
+            timestampString = "395442517.895297"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-updateForPlayer:"
             landmarkType = "5">
             <Locations>
@@ -272,11 +268,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/AIManager.m"
-            timestampString = "395428606.535585"
+            timestampString = "395442381.529294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-sendForce:ToTemple:"
             landmarkType = "5">
          </BreakpointContent>
@@ -293,8 +289,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
             endingLineNumber = "128"
-            landmarkName = "-findPathBetween:and:"
-            landmarkType = "5">
+            landmarkName = "@implementation NavigationMesh"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -339,8 +335,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
             endingLineNumber = "130"
-            landmarkName = "-findPathBetween:and:"
-            landmarkType = "5">
+            landmarkName = "@implementation NavigationMesh"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -355,8 +351,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
             endingLineNumber = "138"
-            landmarkName = "-findPathBetween:and:"
-            landmarkType = "5">
+            landmarkName = "@implementation NavigationMesh"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -410,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/AIManager.m"
-            timestampString = "395429397.2113"
+            timestampString = "395442381.529294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "-sendForce:ToTemple:"
             landmarkType = "5">
             <Locations>
@@ -456,11 +452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/AIManager.m"
-            timestampString = "395430480.937077"
+            timestampString = "395442517.895297"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "-sendForce:ToTemple:"
             landmarkType = "5">
          </BreakpointContent>
@@ -477,8 +473,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "135"
             endingLineNumber = "135"
-            landmarkName = "-findPathBetween:and:"
-            landmarkType = "5">
+            landmarkName = "@implementation NavigationMesh"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -504,11 +500,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hackathon2013/AIManager.m"
-            timestampString = "395431499.585946"
+            timestampString = "395442381.529294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-sendForce:ToTemple:"
             landmarkType = "5">
          </BreakpointContent>
@@ -525,8 +521,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "-findPathBetween:and:"
-            landmarkType = "5">
+            landmarkName = "@implementation NavigationMesh"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -542,6 +538,38 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "-updateWithAgentWithDT:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hackathon2013/TileMap.m"
+            timestampString = "395442228.250853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "-dropAtX:atY:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hackathon2013/TileMap.m"
+            timestampString = "395442228.250853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "-dropAtX:atY:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

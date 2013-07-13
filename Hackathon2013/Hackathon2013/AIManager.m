@@ -37,6 +37,9 @@
 }
 
 - (NSInteger)incentiveForPlayer:(Player *)player forTemple:(Temple *)temple {
+    if (temple.owner == nil) {
+        return 20;
+    }
     return temple.owner != player ? 10 : 0;
 }
 
@@ -44,6 +47,9 @@
     NSArray * path = [mesh findPathBetween:((Unit*)[force objectAtIndex:0]).position and:temple.position];
     for (Unit *unit in force) {
         unit.agent.goals = [path mutableCopy];
+        if ([path count]==0) {
+            return;
+        }
         unit.goal = [[path objectAtIndex:0]CGRectValue];
         [unit.agent.goals removeObjectAtIndex:0];
         if ([unit.agent.goals count]==0) {

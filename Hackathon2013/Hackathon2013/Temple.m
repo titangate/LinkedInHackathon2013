@@ -41,6 +41,9 @@
 
 - (void)setDominationFactor:(float)dominationFactor {
     _dominationFactor = dominationFactor;
+    if (!self.owner) {
+        return;
+    }
     CGFloat *oldComponents = (CGFloat *)CGColorGetComponents([self.owner.color CGColor]);
     self.color = [SKColor colorWithRed:oldComponents[0]*dominationFactor green:oldComponents[1]*dominationFactor blue:oldComponents[2]*dominationFactor alpha:1.0];
 }

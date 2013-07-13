@@ -150,7 +150,8 @@ namespace RVO {
 	}
     
     void RVOSimulator::removeObstacle(size_t obstacleNo, size_t size) {
-        obstacles_.erase(obstacles_.begin() + obstacleNo, obstacles_.begin() + obstacleNo + size);
+        obstacles_.clear();
+        //obstacles_.erase(obstacles_.begin() + obstacleNo, obstacles_.begin() + obstacleNo + size);
     }
     
 	size_t RVOSimulator::addObstacle(const std::vector<Vector2> &vertices)
