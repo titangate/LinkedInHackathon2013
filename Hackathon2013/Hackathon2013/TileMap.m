@@ -224,12 +224,35 @@ static NSArray *sTileColors = nil;
         }
     }
     while([(NSMutableArray*)unexplored count]>0){
-        CGPoint* p;
-        //getValue[(NSMutableArray*)unexplored objectAtIndex:0];
+        CGPoint p;
+        [[unexplored objectAtIndex:0] getValue: &p];
         [unexplored removeObjectAtIndex:0];
-        //if([TileMap isObstacle: ])
+        if([TileMap isObstacle: p.x atY:p.y]){
+            [res addObject: [TileMap calcConnCompAtX:p.x atY: p.y withUnEx: unexplored]];
+        }
     }
-    
+    return res;
+}
+
++ (NSArray*) calcConnCompAtX:(int)x atY:(int)y withUnEx: (NSMutableArray*)unexplored{
+    NSMutableArray *res =[[NSMutableArray alloc] initWithCapacity:10];
+    NSValue* v =[NSValue valueWithCGPoint:CGPointMake(x, y)];
+    [res addObject:v]; //add starting point
+    for(int i=x-1; i<=x+1; i++){
+        for(int j=y-1; j<=y+1; j++){
+            if(i>=0 && i<=kWorldTileDivisor && j>=0 && j<=kWorldTileDivisor){
+                NSValue* neigh = [NSValue valueWithCGPoint:CGPointMake(i, j)];
+                int index = [unexplored indexOfObject:neigh];
+                if(index !=NSNotFound){
+                    [unexplored removeObjectAtIndex:index];
+                    if([TileMap isObstacle:i atY:j]){
+                        [res addObjectsFromArray: [TileMap calcConnCompAtX:i atY:j withUnEx:unexplored]];
+                    }
+                }
+                    
+            }
+        }
+    }
     return res;
 }
 @end
