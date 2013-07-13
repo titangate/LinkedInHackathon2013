@@ -29,7 +29,7 @@
 @property (nonatomic) float speed;
 @property (nonatomic, readonly) CGPoint currentVelocity;
 @property (readonly) CGFloat radius;
-@property (nonatomic) CGPoint goal;
+@property (nonatomic) CGRect goal;
 @property (nonatomic) NSMutableArray *goals;
 @property (nonatomic) BOOL isMoving;
 @property (nonatomic, readonly) NSArray *neighbours;

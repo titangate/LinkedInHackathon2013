@@ -11,6 +11,7 @@
 
 @implementation ViewController {
     UIPanGestureRecognizer *panGestureRecognizer;
+    UIPinchGestureRecognizer *pinchGestureRecognizer;
     MyScene * scene;
 }
 
@@ -32,17 +33,35 @@
     
     panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGestureRecognzier:)];
     [self.view addGestureRecognizer:panGestureRecognizer];
+    
+    pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(handlePinchGestureRecognizer:)];
+    [self.view addGestureRecognizer:pinchGestureRecognizer];
 }
 
-- (void)handlePanGestureRecognzier:(UIPanGestureRecognizer *)gestureRecognzier {
+- (void)handlePanGestureRecognzier:(UIPanGestureRecognizer *)gestureRecognizer {
     CGPoint offset,gestureOffset;
-    switch (gestureRecognzier.state) {
+    switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan:
         case UIGestureRecognizerStateChanged:
             offset = scene.offset;
-            gestureOffset = [gestureRecognzier translationInView:self.view];
+            gestureOffset = [gestureRecognizer translationInView:self.view];
             scene.offset = CGPointMake(offset.x + gestureOffset.x, offset.y - gestureOffset.y);
-            [gestureRecognzier setTranslation:CGPointZero inView:self.view];
+            [gestureRecognizer setTranslation:CGPointZero inView:self.view];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)handlePinchGestureRecognizer:(UIPinchGestureRecognizer *)gestureRecognizer {
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateChanged:
+            if (gestureRecognizer.scale < 0.6) {
+                scene.mode = OP_DRAIN;
+            } else if (gestureRecognizer.scale > 1.4) {
+                scene.mode = OP_FILL;
+            }
             break;
             
         default:

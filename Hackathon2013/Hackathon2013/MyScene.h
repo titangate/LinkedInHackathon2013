@@ -8,6 +8,12 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+NS_ENUM(NSInteger, OPMODE) {
+    OP_DRAIN,
+    OP_FILL
+};
+
 @interface MyScene : SKScene
 @property (nonatomic) CGPoint offset;
+@property (nonatomic) enum OPMODE mode;
 @end

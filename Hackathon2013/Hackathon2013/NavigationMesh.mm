@@ -115,8 +115,6 @@ typedef struct {
     return self;
 }
 
-
-
 - (NSArray *)findPathBetween:(CGPoint)begin and:(CGPoint)end {
     NSInteger x1 = [self findNearestHorizontalIndex:begin.x];
     NSInteger y1 = [self findNearestVerticalIndex:begin.y];
@@ -140,11 +138,22 @@ typedef struct {
             while (from.find(point) != from.end()) {
                 int x = point.x();
                 int y = point.y();
-                [path addObject:[NSValue valueWithCGPoint:CGPointMake([[horizontalDivider objectAtIndex:x]floatValue]+4,[[verticalDivider objectAtIndex:y]floatValue]+4)]];
+                CGSize size;
+                if (x == [horizontalDivider count]-1) {
+                    size.width = 100;
+                } else {
+                    size.width = [[horizontalDivider objectAtIndex:x+1]floatValue] - [[horizontalDivider objectAtIndex:x]floatValue];
+                }
+                if (y == [verticalDivider count]-1) {
+                    size.height = 100;
+                } else {
+                    size.height = [[verticalDivider objectAtIndex:y+1]floatValue] - [[verticalDivider objectAtIndex:y]floatValue];
+                }
+                [path addObject:[NSValue valueWithCGRect:(CGRect){.origin = CGPointMake([[horizontalDivider objectAtIndex:x]floatValue],[[verticalDivider objectAtIndex:y]floatValue]),.size = size}]];
                 point = from[point];
             }
-            [path setObject:[NSValue valueWithCGPoint:begin] atIndexedSubscript:0];
-            [path setObject:[NSValue valueWithCGPoint:end] atIndexedSubscript:[path count]-1];
+            //[path setObject:[NSValue valueWithCGPoint:begin] atIndexedSubscript:0];
+            //[path setObject:[NSValue valueWithCGPoint:end] atIndexedSubscript:[path count]-1];
             return path;
         }
         if (point.x() > 0) {

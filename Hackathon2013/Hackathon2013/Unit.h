@@ -21,11 +21,13 @@
 
 @interface Unit : SKSpriteNode
 @property (nonatomic) RVOAgent *agent;
-@property (nonatomic) CGPoint goal;
+@property (nonatomic) CGRect goal;
 @property (nonatomic) Player *owner;
 @property (nonatomic, weak) Unit *attackingUnit;
 @property (nonatomic) float HP;
 @property (nonatomic, weak) id <UnitDelegate> delegate;
+@property (readonly) NSMutableDictionary *animations;
 - (void)updateWithAgentWithDT:(float)delta;
 - (BOOL)engageInBattle:(Unit *)unit;
++ (NSArray *)loadAnimiationFromFileName:(NSString *)baseFileName atlas:(NSString *)atlasName numberOfFrames:(NSInteger)numberOfFrames;
 @end

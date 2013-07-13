@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BB2073DC17919111003C5B2E /* AIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2073DB17919111003C5B2E /* AIManager.m */; };
 		BB2073E21791A50D003C5B2E /* NavigationMesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB2073E11791A50D003C5B2E /* NavigationMesh.mm */; };
+		BB2073E51791DBA5003C5B2E /* fist.atlas in Resources */ = {isa = PBXBuildFile; fileRef = BB2073E31791DBA5003C5B2E /* fist.atlas */; };
+		BB2073E61791DBA5003C5B2E /* crane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = BB2073E41791DBA5003C5B2E /* crane.atlas */; };
 		BB29785D1790F4140045E61B /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978521790F4140045E61B /* Agent.cpp */; };
 		BB29785E1790F4140045E61B /* KdTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978551790F4140045E61B /* KdTree.cpp */; };
 		BB29785F1790F4140045E61B /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978571790F4140045E61B /* Obstacle.cpp */; };
@@ -57,6 +59,8 @@
 		BB2073DB17919111003C5B2E /* AIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIManager.m; sourceTree = "<group>"; };
 		BB2073E01791A50D003C5B2E /* NavigationMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationMesh.h; path = Hackathon2013/NavigationMesh.h; sourceTree = "<group>"; };
 		BB2073E11791A50D003C5B2E /* NavigationMesh.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NavigationMesh.mm; path = Hackathon2013/NavigationMesh.mm; sourceTree = "<group>"; };
+		BB2073E31791DBA5003C5B2E /* fist.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = fist.atlas; sourceTree = "<group>"; };
+		BB2073E41791DBA5003C5B2E /* crane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = crane.atlas; sourceTree = "<group>"; };
 		BB2978521790F4140045E61B /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
 		BB2978531790F4140045E61B /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
 		BB2978541790F4140045E61B /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -199,11 +203,11 @@
 				BB958FAF1790EE520012E2A8 /* AppDelegate.m */,
 				BB958FB11790EE530012E2A8 /* Main_iPhone.storyboard */,
 				BB958FB41790EE530012E2A8 /* Main_iPad.storyboard */,
+				BB958FBD1790EE530012E2A8 /* Spaceship.png */,
 				BB958FB71790EE530012E2A8 /* ViewController.h */,
 				BB958FB81790EE530012E2A8 /* ViewController.m */,
 				BB958FBA1790EE530012E2A8 /* MyScene.h */,
 				BB958FBB1790EE530012E2A8 /* MyScene.m */,
-				BB958FBD1790EE530012E2A8 /* Spaceship.png */,
 				BB6DEA361791487F00BB29FC /* temple.png */,
 				BB958FBF1790EE530012E2A8 /* Images.xcassets */,
 				BB958FA61790EE520012E2A8 /* Supporting Files */,
@@ -255,6 +259,8 @@
 		F327F0AB17911AEB0053623B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				BB2073E31791DBA5003C5B2E /* fist.atlas */,
+				BB2073E41791DBA5003C5B2E /* crane.atlas */,
 				F327F0AE17911E080053623B /* Tiles.atlas */,
 			);
 			name = Assets;
@@ -339,6 +345,8 @@
 				BB958FBE1790EE530012E2A8 /* Spaceship.png in Resources */,
 				BB958FC01790EE530012E2A8 /* Images.xcassets in Resources */,
 				BB958FB61790EE530012E2A8 /* Main_iPad.storyboard in Resources */,
+				BB2073E51791DBA5003C5B2E /* fist.atlas in Resources */,
+				BB2073E61791DBA5003C5B2E /* crane.atlas in Resources */,
 				BB958FB31790EE530012E2A8 /* Main_iPhone.storyboard in Resources */,
 				BB6DEA371791487F00BB29FC /* temple.png in Resources */,
 				BB958FAA1790EE520012E2A8 /* InfoPlist.strings in Resources */,

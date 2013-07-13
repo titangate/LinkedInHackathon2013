@@ -29,6 +29,7 @@
     Player *enemy;
     NSTimer *timer;
     AIManager *aiManager;
+    SKLabelNode *myLabel;
 }
 
 - (void)unitKilledInBattle:(Unit *)unit {
@@ -121,8 +122,13 @@
 
 - (void)timerTicked {
     for (Temple *temple in temples) {
-        Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
-        unit.agent = [hub createAgentAtPosition:temple.position withRadius:16.0 withSpeed:48.0];
+        Unit *unit = [[Unit alloc]initWithImageNamed:@"fist1.png"];
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [unit.animations setObject:[Unit loadAnimiationFromFileName:@"fist" atlas:@"fist" numberOfFrames:6] forKey:@"fist"];
+            [unit.animations setObject:[Unit loadAnimiationFromFileName:@"crane" atlas:@"crane" numberOfFrames:6] forKey:@"crane"];
+        });
+        unit.agent = [hub createAgentAtPosition:CGPointMake(temple.position.x, temple.position.y+30) withRadius:16.0 withSpeed:48.0];
         unit.agent.controller = unit;
         unit.size = CGSizeMake(32,32);
         unit.owner = temple.owner;
@@ -141,20 +147,20 @@
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         
         myLabel.text = @"Hello, World!";
         myLabel.fontSize = 30;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
         
-        [world addChild:myLabel];
         agents = [[NSMutableArray alloc]init];
         temples = [[NSMutableArray alloc]init];
         markToBeRemoved = [[NSMutableArray alloc]init];
         hub = [[RVOHub alloc]init];
         hub.timeStep = 0.1;
         [self initDemo];
+        [self addChild:myLabel];
     }
     return self;
 }
@@ -163,10 +169,7 @@
     /* Called when a touch begins */
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:world];
-        
-        for (Unit *unit in agents) {
-            unit.goal = location;
-        }
+        // TODO: use things
     }
 }
 
@@ -198,6 +201,15 @@
         [hub removeAgent:unit.agent];
         [agents removeObject:unit];
         [markToBeRemoved removeLastObject];
+    }
+}
+
+- (void)setMode:(enum OPMODE)mode {
+    _mode = mode;
+    if (mode == OP_FILL) {
+        myLabel.text = @"DRAINING";
+    } else {
+        myLabel.text = @"FILLING";
     }
 }
 

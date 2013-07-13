@@ -139,7 +139,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 @end
 
 @implementation RVOAgent {
-    CGPoint _goal;
+    CGRect _goal;
 }
 
 - (void)setPosition:(CGPoint)position {
@@ -166,11 +166,11 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
     return _simulator->getAgentRadius(self.tag);
 }
 
-- (void)setGoal:(CGPoint)goal {
+- (void)setGoal:(CGRect)goal {
     _goal = goal;
 }
 
-- (CGPoint)goal {
+- (CGRect)goal {
     return _goal;
 }
 
@@ -182,7 +182,8 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 - (void)update {
     cachedNeighbours = nil;
     if (self.isMoving) {
-        _simulator->setAgentPrefVelocity(self.tag, CGPointToVector2(CGPointMake(self.goal.x - self.position.x, self.goal.y - self.position.y)));
+        CGPoint target = CGPointMake(CGRectGetMidX(self.goal),CGRectGetMidY(self.goal));
+        _simulator->setAgentPrefVelocity(self.tag, CGPointToVector2(CGPointMake(target.x - self.position.x, target.y - self.position.y)));
         // nudge
         float angle = std::rand() * 2.0f * M_PI / RAND_MAX;
 		float dist = std::rand() * 0.0001f / RAND_MAX;
@@ -196,8 +197,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 }
 
 - (BOOL)reachedGoal {
-    CGFloat distance = distanceBetweenCGPoint(self.position, self.goal);
-    return distance < self.radius * 4;
+    return (CGRectContainsPoint(self.goal, self.position));
 }
 
 - (NSArray *)neighbours {
