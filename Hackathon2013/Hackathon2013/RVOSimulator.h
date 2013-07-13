@@ -235,7 +235,7 @@ namespace RVO {
 		 *             each agent.
 		 */
         
-        void removeObstacle(size_t obstacleNo);
+        void removeObstacle(size_t obstacleNo, size_t size);
         
 		void doStep();
 

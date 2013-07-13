@@ -46,6 +46,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 
 @interface RVOHub () {
     NSMutableArray *_agents;
+    NSMutableArray *_agentReUsePool;
     NSMutableArray *_obstacles;
 }
 @end
@@ -56,6 +57,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
     self = [super init];
     if (self) {
         _agents = [[NSMutableArray alloc]init];
+        _agentReUsePool = [[NSMutableArray alloc]init];
         _obstacles = [[NSMutableArray alloc]init];
         simulator = new RVOSimulator();
         simulator->setTimeStep(0.25);
@@ -78,26 +80,34 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 }
 
 - (RVOAgent *)createAgentAtPosition:(CGPoint)position withRadius:(CGFloat)radius withSpeed:(CGFloat)speed{
-    RVOAgent *agent= [[RVOAgent alloc]init];
-    agent.tag = agentCount;
-    agent.simulator = simulator;
-    simulator->addAgent(CGPointToVector2(position), radius*2, 10.0f, 10.0f, 1.5f, radius, speed);
-    [_agents addObject:agent];
-    agentCount++;
+    RVOAgent *agent;
+    if ([_agentReUsePool count] > 0) {
+        agent = [_agentReUsePool lastObject];
+        [_agentReUsePool removeLastObject];
+        simulator->setAgentPosition(agent.tag, CGPointToVector2(position));
+        simulator->setAgentRadius(agent.tag, radius);
+        simulator->setAgentMaxSpeed(agent.tag, speed);
+    } else {
+        agent= [[RVOAgent alloc]init];
+        agent.tag = agentCount;
+        agent.simulator = simulator;
+        simulator->addAgent(CGPointToVector2(position), radius*2, 10.0f, 10.0f, 1.5f, radius, speed);
+        [_agents addObject:agent];
+        agentCount++;
+    }
     return agent;
 }
 
 - (void)removeAgent:(RVOAgent *)agent {
-    simulator->removeAgent(agent.tag);
+    static Vector2 middleOfNoWhere = Vector2(-10000,-10000);
+    simulator->setAgentPosition(agent.tag, middleOfNoWhere);
+    simulator->setAgentPrefVelocity(agent.tag, Vector2(0,0));
     [_agents removeObject:agent];
-    for (NSInteger i = 0; i < [_agents count]; i++) {
-        ((RVOAgent *)[_agents objectAtIndex:i]).tag = i;
-    }
+    [_agentReUsePool addObject:agent];
 }
 
 - (RVOObstacle *)createObstacleWithVerticies:(NSArray *)verticies {
     RVOObstacle *obstacle = [[RVOObstacle alloc]initWithVerticies:verticies];
-    obstacle.tag = obstacleCount;
     obstacle.simulator = simulator;
     obstacle.lineWidth = 1.0;
     obstacle.glowWidth = 2.0;
@@ -108,10 +118,16 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
         [value getValue:&point];
         stdVerticies.push_back(CGPointToVector2(point));
     }
-    simulator->addObstacle(stdVerticies);
-    obstacleCount++;
+    obstacle.tag = simulator->addObstacle(stdVerticies);
     simulator->processObstacles();
+    [_obstacles addObject:obstacle];
     return obstacle;
+}
+
+- (void)removeObstacle:(RVOObstacle *)obstacle {
+    [_obstacles removeObject:obstacle];
+    simulator->removeObstacle(obstacle.tag, [obstacle.verticies count]);
+    simulator->processObstacles();
 }
 
 @end
