@@ -51,7 +51,15 @@
     }
     [self.agent update];
     if ([self.agent reachedGoal]) {
-        self.agent.isMoving = NO;
+        if (self.agent.goals) {
+            self.goal = [[self.agent.goals objectAtIndex:0] CGPointValue];
+            [self.agent.goals removeObjectAtIndex:0];
+            if ([self.agent.goals count]==0) {
+                self.agent.goals = nil;
+            }
+        } else {
+            self.agent.isMoving = NO;
+        }
     }
     self.position = self.agent.position;
     if (self.HP < 0) {

@@ -351,6 +351,10 @@ namespace RVO {
 	{
 		return vector / abs(vector);
 	}
+    
+    inline bool operator< (const Vector2 &vector1, const Vector2 &vector2) {
+        return vector1.x() * 10000 + vector1.y() < vector2.x() * 10000 + vector2.y();
+    }
 }
 
 #endif /* RVO_VECTOR2_H_ */
