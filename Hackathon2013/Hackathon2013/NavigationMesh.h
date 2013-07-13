@@ -10,4 +10,5 @@
 
 @interface NavigationMesh : NSArray
 - (id)initWithPolygons:(NSArray *)polygons;
+- (NSArray *)findPathBetween:(CGPoint)begin and:(CGPoint)end;
 @end

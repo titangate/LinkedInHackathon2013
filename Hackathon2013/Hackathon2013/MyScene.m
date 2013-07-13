@@ -49,6 +49,16 @@
     return temple;
 }
 
+- (RVOObstacle *)addObstacle:(CGPoint *)points count:(NSInteger)count {
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (NSInteger i = 0; i<count; i++) {
+        NSValue *value = [NSValue valueWithCGPoint:points[i]];
+        [array addObject:value];
+    }
+    RVOObstacle *obstacle = [hub createObstacleWithVerticies:array];
+    return obstacle;
+}
+
 - (void)initDemo {
     player = [[Player alloc]init];
     enemy = [[Player alloc]init];
@@ -83,17 +93,21 @@
         [agents addObject:unit];
     }
     CGPoint points[] = {
-        {200,100},
-        {300,100},
-        {150,300}
+        {200,200},
+        {300,200},
+        {300,300},
+        {200,300}
     };
-    NSMutableArray *array = [[NSMutableArray alloc]init];
-    for (NSInteger i = 0; i<3; i++) {
-        NSValue *value = [NSValue valueWithCGPoint:points[i]];
-        [array addObject:value];
-    }
-    RVOObstacle *obstacle = [hub createObstacleWithVerticies:array];
+    
+    RVOObstacle *obstacle = [self addObstacle:points count:4];
+    
+    RVOObstacle *obstacle2 = [self addObstacle:(CGPoint[]){
+        {500,300},
+        {400,200},
+        {600,300},
+    } count:3];
     [world addChild:obstacle];
+    [world addChild:obstacle2];
     [self createTempleAtLocation:CGPointMake(100, 100)].owner = player;
     [self createTempleAtLocation:CGPointMake(500, 500)].owner = enemy;
     
@@ -101,7 +115,8 @@
     aiManager = [[AIManager alloc]init];
     aiManager.temples = temples;
     aiManager.players = @[player,enemy];
-    aiManager.obstacles = @[obstacle];
+    aiManager.obstacles = @[];
+    aiManager.obstacles = @[obstacle,obstacle2];
 }
 
 - (void)timerTicked {

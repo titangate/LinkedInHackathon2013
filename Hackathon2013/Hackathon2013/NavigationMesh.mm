@@ -10,6 +10,7 @@
 #import "RVOSimulator.h"
 #import "RVOHub.h"
 #include <queue>
+#include <map>
 using namespace std;
 using namespace RVO;
 
@@ -114,31 +115,65 @@ typedef struct {
     return self;
 }
 
+
+
 - (NSArray *)findPathBetween:(CGPoint)begin and:(CGPoint)end {
     NSInteger x1 = [self findNearestHorizontalIndex:begin.x];
     NSInteger y1 = [self findNearestVerticalIndex:begin.y];
     NSInteger x2 = [self findNearestHorizontalIndex:end.x];
     NSInteger y2 = [self findNearestVerticalIndex:end.y];
     NSMutableArray *path = [[NSMutableArray alloc]init];
+    map<Vector2, Vector2> from;
+    map<Vector2, BOOL> visited;
     deque<Vector2> openset;
     openset.push_back((Vector2){x1,y1});
     while (!openset.empty()) {
         Vector2 point = openset.front();
         openset.pop_front();
-        if (point = ) {
-            <#statements#>
+        if (visited.find(point)!=visited.end()) {
+            continue;
+        }
+        visited[point] = YES;
+        if (point.x() == x2 && point.y() == y2) {
+            [horizontalDivider insertObject:[NSNumber numberWithFloat:0] atIndex:0];
+            [verticalDivider insertObject:[NSNumber numberWithFloat:0] atIndex:0];
+            while (from.find(point) != from.end()) {
+                int x = point.x();
+                int y = point.y();
+                [path addObject:[NSValue valueWithCGPoint:CGPointMake([[horizontalDivider objectAtIndex:x]floatValue]+4,[[verticalDivider objectAtIndex:y]floatValue]+4)]];
+                point = from[point];
+            }
+            [path setObject:[NSValue valueWithCGPoint:begin] atIndexedSubscript:0];
+            [path setObject:[NSValue valueWithCGPoint:end] atIndexedSubscript:[path count]-1];
+            return path;
         }
         if (point.x() > 0) {
-            openset.push_back(Vector2(point.x()-1,point.y()));
+            Vector2 point2(point.x()-1,point.y());
+            if (visited.find(point2)==visited.end()) {
+                from[point2] = point;
+                openset.push_back(point2);
+            }
         }
         if (point.y() > 0) {
-            openset.push_back(Vector2(point.x(),point.y()-1));
+            Vector2 point2(point.x(),point.y()-1);
+            if (visited.find(point2)==visited.end()) {
+                from[point2] = point;
+                openset.push_back(point2);
+            }
         }
-        if (point.x() < [horizontalDivider count]) {
-            openset.push_back(Vector2(point.x()+1,point.y()));
+        if (point.x() < [horizontalDivider count]+1) {
+            Vector2 point2(point.x()+1,point.y());
+            if (visited.find(point2)==visited.end()) {
+                from[point2] = point;
+                openset.push_back(point2);
+            }
         }
-        if (point.y() > [verticalDivider count]) {
-            openset.push_back(Vector2(point.x(),point.y()+1));
+        if (point.y() < [verticalDivider count]+1) {
+            Vector2 point2(point.x(),point.y()+1);
+            if (visited.find(point2)==visited.end()) {
+                from[point2] = point;
+                openset.push_back(point2);
+            }
         }
     }
     return nil;

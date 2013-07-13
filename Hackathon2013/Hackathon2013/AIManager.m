@@ -41,8 +41,14 @@
 }
 
 - (void)sendForce:(NSArray *)force ToTemple:(Temple *)temple {
+    NSArray * path = [mesh findPathBetween:((Unit*)[force objectAtIndex:0]).position and:temple.position];
     for (Unit *unit in force) {
-        unit.goal = temple.position;
+        unit.agent.goals = [path mutableCopy];
+        unit.goal = [[path objectAtIndex:0]CGPointValue];
+        [unit.agent.goals removeObjectAtIndex:0];
+        if ([unit.agent.goals count]==0) {
+            unit.agent.goals = nil;
+        }
     }
 }
 
