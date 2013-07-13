@@ -183,4 +183,32 @@ static NSArray *sTileColors = nil;
     }
 }
 
+//not tested
+- (int) dropAtX:(int)x atY:(int)y {
+    if ([self isDryestAtX:x atY:y]){
+        if([self makeWetAtX:x atY:y]){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    else{
+        int sum=0;
+        int tileInd = [TileMap tileNumAtX:x atY:y];
+        int cellWetness = [[sBackgroundTilesNums objectAtIndex:tileInd] integerValue];
+        for(int i=x-1; i<=x+1; i++){
+            for(int j=y-1; j<=y+1; j++){
+                if(i>=0 && i<=kWorldTileDivisor && j>=0 && j<=kWorldTileDivisor){
+                    int tileInd = [TileMap tileNumAtX:i atY:j];
+                    int neighborWetness = [[sBackgroundTilesNums objectAtIndex:tileInd] integerValue];
+                    if(neighborWetness<cellWetness){
+                        sum += [self dropAtX:i atY:j];
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+}
 @end
