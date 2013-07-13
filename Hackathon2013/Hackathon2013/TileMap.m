@@ -40,7 +40,7 @@
     NSLog(@"Loading world tiles");
     NSDate *startDate = [NSDate date];
     NSNumber *defaultTile = [NSNumber numberWithInt:2];
-    SKTextureAtlas *tileAtlas = [SKTextureAtlas atlasNamed:@"Tiles"];
+    //SKTextureAtlas *tileAtlas = [SKTextureAtlas atlasNamed:@"Tiles"];
     sBackgroundTilesNums = [[NSMutableArray alloc] initWithCapacity:kWorldTileDivisor*kWorldTileDivisor];
     for (int y = 0; y < kWorldTileDivisor; y++) {
         for (int x = 0; x < kWorldTileDivisor; x++) {
@@ -210,5 +210,26 @@ static NSArray *sTileColors = nil;
         }
         return sum;
     }
+}
+
+//returns array of arrays of connected points that are obstacles
+- (NSArray *) getConnectedComponents{
+    NSMutableArray *unexplored = [[NSMutableArray alloc] initWithCapacity:kWorldTileDivisor*kWorldTileDivisor];
+    NSMutableArray *res = [[NSMutableArray alloc] initWithCapacity:4];
+    for(int i=0; i<kWorldTileDivisor; i++){
+        for(int j=0; j<kWorldTileDivisor; j++){
+            CGPoint p = CGPointMake(i, j);
+            NSValue* v = [NSValue valueWithCGPoint:p];
+            [(NSMutableArray *)unexplored addObject: v];
+        }
+    }
+    while([(NSMutableArray*)unexplored count]>0){
+        CGPoint* p;
+        //getValue[(NSMutableArray*)unexplored objectAtIndex:0];
+        [unexplored removeObjectAtIndex:0];
+        //if([TileMap isObstacle: ])
+    }
+    
+    return res;
 }
 @end
