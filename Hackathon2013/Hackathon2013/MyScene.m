@@ -23,10 +23,12 @@
     world = [[SKNode alloc]init];
     [self addChild:world];
     [world addChild:tileMap];
-    for(NSInteger i=0; i<32; i++){
-        //for(NSInteger j=0; j<32; j++)
+    /*for(NSInteger i=0; i<32; i++){
         [tileMap makeDryAtX:i atY:31-i];
-    }
+    }*/
+    [tileMap drainAtX:16 atY:16];
+    [tileMap drainAtX:16 atY:16];
+    [tileMap drainAtX:16 atY:16];
     for (NSInteger i = 0; i<30; i++) {
         Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
         unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
