@@ -91,7 +91,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
         agent= [[RVOAgent alloc]init];
         agent.tag = agentCount;
         agent.simulator = simulator;
-        simulator->addAgent(CGPointToVector2(position), radius*2, 10.0f, 10.0f, 1.5f, radius, speed);
+        simulator->addAgent(CGPointToVector2(position), radius*3, radius*2, 10.0f, 1.5f, radius, speed);
         [_agents addObject:agent];
         agentCount++;
     }

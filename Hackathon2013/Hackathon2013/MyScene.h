@@ -9,5 +9,5 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface MyScene : SKScene
-
+@property (nonatomic) CGPoint offset;
 @end
