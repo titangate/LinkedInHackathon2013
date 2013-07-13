@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB2073DC17919111003C5B2E /* AIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2073DB17919111003C5B2E /* AIManager.m */; };
+		BB2073E21791A50D003C5B2E /* NavigationMesh.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB2073E11791A50D003C5B2E /* NavigationMesh.mm */; };
 		BB29785D1790F4140045E61B /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978521790F4140045E61B /* Agent.cpp */; };
 		BB29785E1790F4140045E61B /* KdTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978551790F4140045E61B /* KdTree.cpp */; };
 		BB29785F1790F4140045E61B /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978571790F4140045E61B /* Obstacle.cpp */; };
@@ -14,6 +16,9 @@
 		BB2978651790F52B0045E61B /* RVOHub.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB2978641790F52B0045E61B /* RVOHub.mm */; };
 		BB2978681790FD9B0045E61B /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB2978671790FD9B0045E61B /* Utils.mm */; };
 		BB29786B179100C10045E61B /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = BB29786A179100930045E61B /* Unit.m */; };
+		BB6DEA32179145EE00BB29FC /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEA31179145EE00BB29FC /* Player.m */; };
+		BB6DEA35179146C000BB29FC /* Temple.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6DEA34179146C000BB29FC /* Temple.m */; };
+		BB6DEA371791487F00BB29FC /* temple.png in Resources */ = {isa = PBXBuildFile; fileRef = BB6DEA361791487F00BB29FC /* temple.png */; };
 		BB958F9E1790EE520012E2A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958F9D1790EE520012E2A8 /* Foundation.framework */; };
 		BB958FA01790EE520012E2A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958F9F1790EE520012E2A8 /* CoreGraphics.framework */; };
 		BB958FA21790EE520012E2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958FA11790EE520012E2A8 /* UIKit.framework */; };
@@ -32,9 +37,13 @@
 		BB958FC91790EE530012E2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958FA11790EE520012E2A8 /* UIKit.framework */; };
 		BB958FD11790EE530012E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB958FCF1790EE530012E2A8 /* InfoPlist.strings */; };
 		BB958FD31790EE530012E2A8 /* Hackathon2013Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB958FD21790EE530012E2A8 /* Hackathon2013Tests.m */; };
-		F327F0AF17911E080053623B /* Tiles.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F327F0AE17911E080053623B /* Tiles.atlas */; };
 		F327F0B21791218E0053623B /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = F327F0B11791217B0053623B /* TileMap.m */; };
 		F327F0B517913DEF0053623B /* ConvexHullUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F327F0B417913DEF0053623B /* ConvexHullUtil.m */; };
+		F36E2C5217917958006B67B8 /* tile0.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C4D17917958006B67B8 /* tile0.png */; };
+		F36E2C5317917958006B67B8 /* tile1.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C4E17917958006B67B8 /* tile1.png */; };
+		F36E2C5417917958006B67B8 /* tile2.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C4F17917958006B67B8 /* tile2.png */; };
+		F36E2C5517917958006B67B8 /* tile3.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C5017917958006B67B8 /* tile3.png */; };
+		F36E2C5617917958006B67B8 /* tile4.png in Resources */ = {isa = PBXBuildFile; fileRef = F36E2C5117917958006B67B8 /* tile4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB2073DA17919111003C5B2E /* AIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIManager.h; sourceTree = "<group>"; };
+		BB2073DB17919111003C5B2E /* AIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIManager.m; sourceTree = "<group>"; };
+		BB2073E01791A50D003C5B2E /* NavigationMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationMesh.h; path = Hackathon2013/NavigationMesh.h; sourceTree = "<group>"; };
+		BB2073E11791A50D003C5B2E /* NavigationMesh.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NavigationMesh.mm; path = Hackathon2013/NavigationMesh.mm; sourceTree = "<group>"; };
 		BB2978521790F4140045E61B /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
 		BB2978531790F4140045E61B /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
 		BB2978541790F4140045E61B /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -65,6 +78,11 @@
 		BB2978671790FD9B0045E61B /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
 		BB297869179100930045E61B /* Unit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		BB29786A179100930045E61B /* Unit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
+		BB6DEA30179145EE00BB29FC /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		BB6DEA31179145EE00BB29FC /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		BB6DEA33179146C000BB29FC /* Temple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Temple.h; sourceTree = "<group>"; };
+		BB6DEA34179146C000BB29FC /* Temple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Temple.m; sourceTree = "<group>"; };
+		BB6DEA361791487F00BB29FC /* temple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temple.png; sourceTree = "<group>"; };
 		BB958F9A1790EE520012E2A8 /* Hackathon2013.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon2013.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB958F9D1790EE520012E2A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BB958F9F1790EE520012E2A8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,11 +107,15 @@
 		BB958FCE1790EE530012E2A8 /* Hackathon2013Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hackathon2013Tests-Info.plist"; sourceTree = "<group>"; };
 		BB958FD01790EE530012E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BB958FD21790EE530012E2A8 /* Hackathon2013Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hackathon2013Tests.m; sourceTree = "<group>"; };
-		F327F0AE17911E080053623B /* Tiles.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Tiles.atlas; sourceTree = "<group>"; };
 		F327F0B01791217B0053623B /* TileMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
 		F327F0B11791217B0053623B /* TileMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		F327F0B317913DEF0053623B /* ConvexHullUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvexHullUtil.h; sourceTree = "<group>"; };
 		F327F0B417913DEF0053623B /* ConvexHullUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvexHullUtil.m; sourceTree = "<group>"; };
+		F36E2C4D17917958006B67B8 /* tile0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile0.png; sourceTree = "<group>"; };
+		F36E2C4E17917958006B67B8 /* tile1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile1.png; sourceTree = "<group>"; };
+		F36E2C4F17917958006B67B8 /* tile2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile2.png; sourceTree = "<group>"; };
+		F36E2C5017917958006B67B8 /* tile3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile3.png; sourceTree = "<group>"; };
+		F36E2C5117917958006B67B8 /* tile4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +166,8 @@
 		BB958F911790EE520012E2A8 = {
 			isa = PBXGroup;
 			children = (
+				BB2073E01791A50D003C5B2E /* NavigationMesh.h */,
+				BB2073E11791A50D003C5B2E /* NavigationMesh.mm */,
 				F327F0B317913DEF0053623B /* ConvexHullUtil.h */,
 				F327F0B417913DEF0053623B /* ConvexHullUtil.m */,
 				F327F0AB17911AEB0053623B /* Assets */,
@@ -188,6 +212,7 @@
 				BB958FBA1790EE530012E2A8 /* MyScene.h */,
 				BB958FBB1790EE530012E2A8 /* MyScene.m */,
 				BB958FBD1790EE530012E2A8 /* Spaceship.png */,
+				BB6DEA361791487F00BB29FC /* temple.png */,
 				BB958FBF1790EE530012E2A8 /* Images.xcassets */,
 				BB958FA61790EE520012E2A8 /* Supporting Files */,
 				BB2978661790FD9B0045E61B /* Utils.h */,
@@ -196,6 +221,12 @@
 				BB29786A179100930045E61B /* Unit.m */,
 				F327F0B01791217B0053623B /* TileMap.h */,
 				F327F0B11791217B0053623B /* TileMap.m */,
+				BB6DEA30179145EE00BB29FC /* Player.h */,
+				BB6DEA31179145EE00BB29FC /* Player.m */,
+				BB6DEA33179146C000BB29FC /* Temple.h */,
+				BB6DEA34179146C000BB29FC /* Temple.m */,
+				BB2073DA17919111003C5B2E /* AIManager.h */,
+				BB2073DB17919111003C5B2E /* AIManager.m */,
 			);
 			path = Hackathon2013;
 			sourceTree = "<group>";
@@ -232,9 +263,21 @@
 		F327F0AB17911AEB0053623B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				F327F0AE17911E080053623B /* Tiles.atlas */,
+				F36E2C4C17917918006B67B8 /* Tiles.atlas */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		F36E2C4C17917918006B67B8 /* Tiles.atlas */ = {
+			isa = PBXGroup;
+			children = (
+				F36E2C4D17917958006B67B8 /* tile0.png */,
+				F36E2C4E17917958006B67B8 /* tile1.png */,
+				F36E2C4F17917958006B67B8 /* tile2.png */,
+				F36E2C5017917958006B67B8 /* tile3.png */,
+				F36E2C5117917958006B67B8 /* tile4.png */,
+			);
+			name = Tiles.atlas;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,10 +358,15 @@
 			files = (
 				BB958FBE1790EE530012E2A8 /* Spaceship.png in Resources */,
 				BB958FC01790EE530012E2A8 /* Images.xcassets in Resources */,
+				F36E2C5617917958006B67B8 /* tile4.png in Resources */,
+				F36E2C5217917958006B67B8 /* tile0.png in Resources */,
 				BB958FB61790EE530012E2A8 /* Main_iPad.storyboard in Resources */,
+				F36E2C5417917958006B67B8 /* tile2.png in Resources */,
 				BB958FB31790EE530012E2A8 /* Main_iPhone.storyboard in Resources */,
+				BB6DEA371791487F00BB29FC /* temple.png in Resources */,
 				BB958FAA1790EE520012E2A8 /* InfoPlist.strings in Resources */,
-				F327F0AF17911E080053623B /* Tiles.atlas in Resources */,
+				F36E2C5317917958006B67B8 /* tile1.png in Resources */,
+				F36E2C5517917958006B67B8 /* tile3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,13 +391,17 @@
 				BB29785D1790F4140045E61B /* Agent.cpp in Sources */,
 				F327F0B517913DEF0053623B /* ConvexHullUtil.m in Sources */,
 				BB958FBC1790EE530012E2A8 /* MyScene.m in Sources */,
+				BB6DEA32179145EE00BB29FC /* Player.m in Sources */,
 				BB2978681790FD9B0045E61B /* Utils.mm in Sources */,
 				BB29785E1790F4140045E61B /* KdTree.cpp in Sources */,
 				BB958FB91790EE530012E2A8 /* ViewController.m in Sources */,
 				BB958FB01790EE520012E2A8 /* AppDelegate.m in Sources */,
+				BB2073DC17919111003C5B2E /* AIManager.m in Sources */,
 				BB2978651790F52B0045E61B /* RVOHub.mm in Sources */,
+				BB6DEA35179146C000BB29FC /* Temple.m in Sources */,
 				BB958FAC1790EE520012E2A8 /* main.m in Sources */,
 				BB29785F1790F4140045E61B /* Obstacle.cpp in Sources */,
+				BB2073E21791A50D003C5B2E /* NavigationMesh.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
