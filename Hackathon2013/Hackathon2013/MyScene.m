@@ -9,6 +9,7 @@
 #import "MyScene.h"
 #import "RVOHub.h"
 #import "Unit.h"
+#import "TileMap.h"
 
 @implementation MyScene {
     RVOHub *hub;

@@ -32,6 +32,8 @@
 		BB958FC91790EE530012E2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958FA11790EE520012E2A8 /* UIKit.framework */; };
 		BB958FD11790EE530012E2A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BB958FCF1790EE530012E2A8 /* InfoPlist.strings */; };
 		BB958FD31790EE530012E2A8 /* Hackathon2013Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB958FD21790EE530012E2A8 /* Hackathon2013Tests.m */; };
+		F327F0AF17911E080053623B /* Tiles.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F327F0AE17911E080053623B /* Tiles.atlas */; };
+		F327F0B21791218E0053623B /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = F327F0B11791217B0053623B /* TileMap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,9 @@
 		BB958FCE1790EE530012E2A8 /* Hackathon2013Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hackathon2013Tests-Info.plist"; sourceTree = "<group>"; };
 		BB958FD01790EE530012E2A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BB958FD21790EE530012E2A8 /* Hackathon2013Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hackathon2013Tests.m; sourceTree = "<group>"; };
+		F327F0AE17911E080053623B /* Tiles.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Tiles.atlas; sourceTree = "<group>"; };
+		F327F0B01791217B0053623B /* TileMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
+		F327F0B11791217B0053623B /* TileMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +141,7 @@
 		BB958F911790EE520012E2A8 = {
 			isa = PBXGroup;
 			children = (
+				F327F0AB17911AEB0053623B /* Assets */,
 				BB958FA51790EE520012E2A8 /* Hackathon2013 */,
 				BB958FCC1790EE530012E2A8 /* Hackathon2013Tests */,
 				BB958F9C1790EE520012E2A8 /* Frameworks */,
@@ -183,6 +189,8 @@
 				BB2978671790FD9B0045E61B /* Utils.mm */,
 				BB297869179100930045E61B /* Unit.h */,
 				BB29786A179100930045E61B /* Unit.m */,
+				F327F0B01791217B0053623B /* TileMap.h */,
+				F327F0B11791217B0053623B /* TileMap.m */,
 			);
 			path = Hackathon2013;
 			sourceTree = "<group>";
@@ -214,6 +222,14 @@
 				BB958FCF1790EE530012E2A8 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F327F0AB17911AEB0053623B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F327F0AE17911E080053623B /* Tiles.atlas */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +313,7 @@
 				BB958FB61790EE530012E2A8 /* Main_iPad.storyboard in Resources */,
 				BB958FB31790EE530012E2A8 /* Main_iPhone.storyboard in Resources */,
 				BB958FAA1790EE520012E2A8 /* InfoPlist.strings in Resources */,
+				F327F0AF17911E080053623B /* Tiles.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F327F0B21791218E0053623B /* TileMap.m in Sources */,
 				BB29786B179100C10045E61B /* Unit.m in Sources */,
 				BB2978601790F4140045E61B /* RVOSimulator.cpp in Sources */,
 				BB29785D1790F4140045E61B /* Agent.cpp in Sources */,
