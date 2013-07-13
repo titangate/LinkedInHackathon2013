@@ -13,6 +13,7 @@
 @implementation MyScene {
     RVOHub *hub;
     NSMutableArray *agents;
+    SKNode *world;
 }
 
 - (void)initDemo {
@@ -21,7 +22,7 @@
         unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
         unit.size = CGSizeMake(32,32);
         
-        [self addChild:unit];
+        [world addChild:unit];
         [agents addObject:unit];
     }
     CGPoint points[] = {
@@ -35,12 +36,14 @@
         [array addObject:value];
     }
     RVOObstacle *obstacle = [hub createObstacleWithVerticies:array];
-    [self addChild:obstacle];
+    [world addChild:obstacle];
 }
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        world = [[SKNode alloc]init];
+        [self addChild:world];
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
@@ -51,7 +54,7 @@
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                        CGRectGetMidY(self.frame));
         
-        [self addChild:myLabel];
+        [world addChild:myLabel];
         agents = [[NSMutableArray alloc]init];
         hub = [[RVOHub alloc]init];
         hub.timeStep = 0.1;
@@ -62,16 +65,38 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    Unit *unit = [agents objectAtIndex:0];
-    [hub removeAgent:unit.agent];
-    [agents removeObject:unit];
+    for (NSInteger i = 0; i<2; i++) {
+        Unit *unit = [agents objectAtIndex:0];
+        [unit removeFromParent];
+        [hub removeAgent:unit.agent];
+        [agents removeObject:unit];
+    }
+    if ([hub.obstacles count]) {
+        RVOObstacle *obstacle = [hub.obstacles objectAtIndex:0];
+        [hub removeObstacle:obstacle];
+        [obstacle removeFromParent];
+    }
+    Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
+    unit.agent = [hub createAgentAtPosition:CGPointMake(100, 100) withRadius:16.0 withSpeed:48.0];
+    unit.size = CGSizeMake(32,32);
+    
+    [world addChild:unit];
+    [agents addObject:unit];
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
+        CGPoint location = [touch locationInNode:world];
         
         for (Unit *unit in agents) {
             unit.goal = location;
         }
     }
+}
+
+- (CGPoint)offset {
+    return world.position;
+}
+
+- (void)setOffset:(CGPoint)offset {
+    world.position = offset;
 }
 
 -(void)update:(CFTimeInterval)currentTime {

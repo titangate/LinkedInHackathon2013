@@ -9,23 +9,45 @@
 #import "ViewController.h"
 #import "MyScene.h"
 
-@implementation ViewController
+@implementation ViewController {
+    UIPanGestureRecognizer *panGestureRecognizer;
+    MyScene * scene;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    SKView *skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
+    scene = [MyScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
     [skView presentScene:scene];
+    
+    panGestureRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanGestureRecognzier:)];
+    [self.view addGestureRecognizer:panGestureRecognizer];
+}
+
+- (void)handlePanGestureRecognzier:(UIPanGestureRecognizer *)gestureRecognzier {
+    CGPoint offset,gestureOffset;
+    switch (gestureRecognzier.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+            offset = scene.offset;
+            gestureOffset = [gestureRecognzier translationInView:self.view];
+            scene.offset = CGPointMake(offset.x + gestureOffset.x, offset.y - gestureOffset.y);
+            [gestureRecognzier setTranslation:CGPointZero inView:self.view];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (BOOL)shouldAutorotate
