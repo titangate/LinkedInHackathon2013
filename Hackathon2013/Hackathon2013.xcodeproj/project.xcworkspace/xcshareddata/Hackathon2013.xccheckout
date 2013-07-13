@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C28EAE01-77E6-40BC-9C92-F436D411FAAF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Hackathon2013</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C54C3A58-2370-4A93-8936-053FA3EA6765</key>
+		<string>https://github.com/titangate/LinkedInHackathon2013.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Hackathon2013/Hackathon2013.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C54C3A58-2370-4A93-8936-053FA3EA6765</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/titangate/LinkedInHackathon2013.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C54C3A58-2370-4A93-8936-053FA3EA6765</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C54C3A58-2370-4A93-8936-053FA3EA6765</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LinkedInHackathon2013</string>
+		</dict>
+	</array>
+</dict>
+</plist>

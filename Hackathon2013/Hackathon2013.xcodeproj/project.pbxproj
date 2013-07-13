@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB29785D1790F4140045E61B /* Agent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978521790F4140045E61B /* Agent.cpp */; };
+		BB29785E1790F4140045E61B /* KdTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978551790F4140045E61B /* KdTree.cpp */; };
+		BB29785F1790F4140045E61B /* Obstacle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB2978571790F4140045E61B /* Obstacle.cpp */; };
+		BB2978601790F4140045E61B /* RVOSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB29785A1790F4140045E61B /* RVOSimulator.cpp */; };
 		BB958F9E1790EE520012E2A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958F9D1790EE520012E2A8 /* Foundation.framework */; };
 		BB958FA01790EE520012E2A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958F9F1790EE520012E2A8 /* CoreGraphics.framework */; };
 		BB958FA21790EE520012E2A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB958FA11790EE520012E2A8 /* UIKit.framework */; };
@@ -38,6 +42,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB2978521790F4140045E61B /* Agent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Agent.cpp; sourceTree = "<group>"; };
+		BB2978531790F4140045E61B /* Agent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agent.h; sourceTree = "<group>"; };
+		BB2978541790F4140045E61B /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
+		BB2978551790F4140045E61B /* KdTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KdTree.cpp; sourceTree = "<group>"; };
+		BB2978561790F4140045E61B /* KdTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KdTree.h; sourceTree = "<group>"; };
+		BB2978571790F4140045E61B /* Obstacle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Obstacle.cpp; sourceTree = "<group>"; };
+		BB2978581790F4140045E61B /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
+		BB2978591790F4140045E61B /* RVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVO.h; sourceTree = "<group>"; };
+		BB29785A1790F4140045E61B /* RVOSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RVOSimulator.cpp; sourceTree = "<group>"; };
+		BB29785B1790F4140045E61B /* RVOSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RVOSimulator.h; sourceTree = "<group>"; };
+		BB29785C1790F4140045E61B /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
 		BB958F9A1790EE520012E2A8 /* Hackathon2013.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hackathon2013.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB958F9D1790EE520012E2A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BB958F9F1790EE520012E2A8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,6 +104,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB2978511790F40F0045E61B /* RVO */ = {
+			isa = PBXGroup;
+			children = (
+				BB2978521790F4140045E61B /* Agent.cpp */,
+				BB2978531790F4140045E61B /* Agent.h */,
+				BB2978541790F4140045E61B /* Definitions.h */,
+				BB2978551790F4140045E61B /* KdTree.cpp */,
+				BB2978561790F4140045E61B /* KdTree.h */,
+				BB2978571790F4140045E61B /* Obstacle.cpp */,
+				BB2978581790F4140045E61B /* Obstacle.h */,
+				BB2978591790F4140045E61B /* RVO.h */,
+				BB29785A1790F4140045E61B /* RVOSimulator.cpp */,
+				BB29785B1790F4140045E61B /* RVOSimulator.h */,
+				BB29785C1790F4140045E61B /* Vector2.h */,
+			);
+			name = RVO;
+			sourceTree = "<group>";
+		};
 		BB958F911790EE520012E2A8 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +156,7 @@
 		BB958FA51790EE520012E2A8 /* Hackathon2013 */ = {
 			isa = PBXGroup;
 			children = (
+				BB2978511790F40F0045E61B /* RVO */,
 				BB958FAE1790EE520012E2A8 /* AppDelegate.h */,
 				BB958FAF1790EE520012E2A8 /* AppDelegate.m */,
 				BB958FB11790EE530012E2A8 /* Main_iPhone.storyboard */,
@@ -266,10 +300,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB2978601790F4140045E61B /* RVOSimulator.cpp in Sources */,
+				BB29785D1790F4140045E61B /* Agent.cpp in Sources */,
 				BB958FBC1790EE530012E2A8 /* MyScene.m in Sources */,
+				BB29785E1790F4140045E61B /* KdTree.cpp in Sources */,
 				BB958FB91790EE530012E2A8 /* ViewController.m in Sources */,
 				BB958FB01790EE520012E2A8 /* AppDelegate.m in Sources */,
 				BB958FAC1790EE520012E2A8 /* main.m in Sources */,
+				BB29785F1790F4140045E61B /* Obstacle.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +522,7 @@
 				BB958FD81790EE530012E2A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB958FD91790EE530012E2A8 /* Build configuration list for PBXNativeTarget "Hackathon2013Tests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +531,7 @@
 				BB958FDB1790EE530012E2A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
