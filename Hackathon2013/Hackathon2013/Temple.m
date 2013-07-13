@@ -49,4 +49,14 @@
     return _dominationFactor;
 }
 
+- (void)setOwner:(Player *)owner {
+    if (self.owner != owner) {
+        Player *oldOwner = self.owner;
+        Player *newOwner = owner;
+        [oldOwner loseTemple:self];
+        [newOwner captureTemple:self];
+    }
+    [super setOwner:owner];
+}
+
 @end

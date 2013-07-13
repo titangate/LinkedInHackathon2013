@@ -11,6 +11,7 @@
 #import "Unit.h"
 #import "TileMap.h"
 #import "Temple.h"
+#import "AIManager.h"
 
 @interface MyScene () <UnitDelegate>
 
@@ -26,6 +27,8 @@
     CFTimeInterval lastFrameTime;
     Player *player;
     Player *enemy;
+    NSTimer *timer;
+    AIManager *aiManager;
 }
 
 - (void)unitKilledInBattle:(Unit *)unit {
@@ -59,7 +62,7 @@
         //for(NSInteger j=0; j<32; j++)
         [tileMap makeDryAtX:i atY:31-i];
     }
-    for (NSInteger i = 0; i<30; i++) {
+    for (NSInteger i = 0; i<0; i++) {
         Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
         unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
         unit.agent.controller = unit;
@@ -80,7 +83,7 @@
         [agents addObject:unit];
     }
     CGPoint points[] = {
-        {100,100},
+        {200,100},
         {300,100},
         {150,300}
     };
@@ -91,7 +94,28 @@
     }
     RVOObstacle *obstacle = [hub createObstacleWithVerticies:array];
     [world addChild:obstacle];
-    [self createTempleAtLocation:CGPointMake(300, 300)].owner = enemy;
+    [self createTempleAtLocation:CGPointMake(100, 100)].owner = player;
+    [self createTempleAtLocation:CGPointMake(500, 500)].owner = enemy;
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(timerTicked) userInfo:nil repeats:YES];
+    aiManager = [[AIManager alloc]init];
+    aiManager.temples = temples;
+    aiManager.players = @[player,enemy];
+    aiManager.obstacles = @[obstacle];
+}
+
+- (void)timerTicked {
+    for (Temple *temple in temples) {
+        Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
+        unit.agent = [hub createAgentAtPosition:temple.position withRadius:16.0 withSpeed:48.0];
+        unit.agent.controller = unit;
+        unit.size = CGSizeMake(32,32);
+        unit.owner = temple.owner;
+        unit.delegate = self;
+        [world addChild:unit];
+        [agents addObject:unit];
+    }
+    [aiManager update];
 }
 
 -(id)initWithSize:(CGSize)size {    
