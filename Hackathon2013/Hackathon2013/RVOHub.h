@@ -19,10 +19,12 @@
 
 @interface RVOAgent : NSObject
 @property (nonatomic) CGPoint position;
-@property (nonatomic) CGFloat angle;
+@property (nonatomic, readonly) CGFloat angle;
 @property (nonatomic) float speed;
 @property (nonatomic, readonly) CGPoint currentVelocity;
 @property (readonly) CGFloat radius;
 @property (nonatomic) CGPoint goal;
+@property (nonatomic) BOOL isMoving;
 - (BOOL)reachedGoal;
+- (void)update;
 @end

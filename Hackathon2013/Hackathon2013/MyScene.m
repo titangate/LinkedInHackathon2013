@@ -7,8 +7,24 @@
 //
 
 #import "MyScene.h"
+#import "RVOHub.h"
+#import "Unit.h"
 
-@implementation MyScene
+@implementation MyScene {
+    RVOHub *hub;
+    NSMutableArray *agents;
+}
+
+- (void)initDemo {
+    for (NSInteger i = 0; i<30; i++) {
+        Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
+        unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
+        unit.size = CGSizeMake(32,32);
+        
+        [self addChild:unit];
+        [agents addObject:unit];
+    }
+}
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
@@ -24,6 +40,10 @@
                                        CGRectGetMidY(self.frame));
         
         [self addChild:myLabel];
+        agents = [[NSMutableArray alloc]init];
+        hub = [[RVOHub alloc]init];
+        hub.timeStep = 0.1;
+        [self initDemo];
     }
     return self;
 }
@@ -34,20 +54,17 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+        for (Unit *unit in agents) {
+            unit.goal = location;
+        }
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
+    [hub update];
+    for (Unit *unit in agents) {
+        [unit updateWithAgent];
+    }
 }
 
 @end

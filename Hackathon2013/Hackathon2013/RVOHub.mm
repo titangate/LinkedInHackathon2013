@@ -32,8 +32,8 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 @end
 
 @interface RVOAgent () {
-    RVOSimulator *simulator;
 }
+@property (nonatomic) RVOSimulator *simulator;
 @property (nonatomic) NSInteger tag;
 @end
 
@@ -66,7 +66,8 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 - (RVOAgent *)createAgentAtPosition:(CGPoint)position withRadius:(CGFloat)radius withSpeed:(CGFloat)speed{
     RVOAgent *agent= [[RVOAgent alloc]init];
     agent.tag = agentCount;
-    simulator->addAgent(CGPointToVector2(position), 10, 10.0f, 10.0f, 1.5f, radius, speed);
+    agent.simulator = simulator;
+    simulator->addAgent(CGPointToVector2(position), radius*2, 10.0f, 10.0f, 1.5f, radius, speed);
     agentCount++;
     return agent;
 }
@@ -78,36 +79,49 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 }
 
 - (void)setPosition:(CGPoint)position {
-    simulator->setAgentPosition(self.tag, CGPointToVector2(position));
+    _simulator->setAgentPosition(self.tag, CGPointToVector2(position));
 }
 
 - (CGPoint)position {
-    return Vector2ToCGPoint(simulator->getAgentPosition(self.tag));
+    return Vector2ToCGPoint(_simulator->getAgentPosition(self.tag));
 }
 
 - (void)setSpeed:(float)speed {
-    simulator->setAgentMaxSpeed(self.tag, speed);
+    _simulator->setAgentMaxSpeed(self.tag, speed);
 }
 
 - (float)speed {
-    return simulator->getAgentMaxSpeed(self.tag);
+    return _simulator->getAgentMaxSpeed(self.tag);
 }
 
 - (CGPoint)currentVelocity {
-    return Vector2ToCGPoint(simulator->getAgentVelocity(self.tag));
+    return Vector2ToCGPoint(_simulator->getAgentVelocity(self.tag));
 }
 
 - (CGFloat)radius {
-    return simulator->getAgentRadius(self.tag);
+    return _simulator->getAgentRadius(self.tag);
 }
 
 - (void)setGoal:(CGPoint)goal {
     _goal = goal;
-    simulator->setAgentPrefVelocity(self.tag, CGPointToVector2(goal));
 }
 
 - (CGPoint)goal {
     return _goal;
+}
+
+- (CGFloat)angle {
+    CGPoint velocity = self.currentVelocity;
+    return atan2(velocity.y, velocity.x);
+}
+
+- (void)update {
+    if (self.isMoving) {
+        _simulator->setAgentPrefVelocity(self.tag, CGPointToVector2(CGPointMake(self.goal.x - self.position.x, self.goal.y - self.position.y)));
+    } else {
+        _simulator->setAgentPrefVelocity(self.tag, Vector2(0,0));
+    }
+    
 }
 
 - (BOOL)reachedGoal {
