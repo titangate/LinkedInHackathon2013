@@ -70,10 +70,6 @@
         [obstacles addObject:obstacle];
         [world addChild:obstacle];
     }
-    
-    //for(NSInteger i=0; i<32; i++){
-        [tileMap makeDryAtX:0 atY:0];
-    //}
     for (NSInteger i = 0; i<30; i++) {
         Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
         unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
