@@ -36,6 +36,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 }
 @property (nonatomic) RVOSimulator *simulator;
 @property (nonatomic) NSInteger tag;
+@property (nonatomic) RVOHub *hub;
 @end
 
 @interface RVOObstacle ()
@@ -46,6 +47,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 
 @interface RVOHub () {
     NSMutableArray *_agents;
+    NSMutableArray *_allAgents;
     NSMutableArray *_agentReUsePool;
     NSMutableArray *_obstacles;
 }
@@ -58,6 +60,7 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
     if (self) {
         _agents = [[NSMutableArray alloc]init];
         _agentReUsePool = [[NSMutableArray alloc]init];
+        _allAgents = [[NSMutableArray alloc]init];
         _obstacles = [[NSMutableArray alloc]init];
         simulator = new RVOSimulator();
         simulator->setTimeStep(0.25);
@@ -93,6 +96,8 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
         agent.simulator = simulator;
         simulator->addAgent(CGPointToVector2(position), radius*3, radius*2, 10.0f, 1.5f, radius, speed);
         [_agents addObject:agent];
+        [_allAgents addObject:agent];
+        agent.hub = self;
         agentCount++;
     }
     return agent;
@@ -185,6 +190,16 @@ CGPoint Vector2ToCGPoint(Vector2 point) {
 - (BOOL)reachedGoal {
     CGFloat distance = distanceBetweenCGPoint(self.position, self.goal);
     return distance < self.radius * 4;
+}
+
+- (NSArray *)neighbours {
+    const size_t maxNumOfNeighbours = _simulator->getAgentNumAgentNeighbors(self.tag);
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    for (NSInteger i = 0;i<maxNumOfNeighbours;i++) {
+        const size_t neighbourTag = _simulator->getAgentAgentNeighbor(self.tag, i);
+        [array addObject:[self.hub.allAgents objectAtIndex:neighbourTag]];
+    }
+    return array;
 }
 
 @end

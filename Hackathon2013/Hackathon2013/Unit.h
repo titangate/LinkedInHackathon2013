@@ -8,9 +8,24 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "RVOHub.h"
+#import "Player.h"
+
+@class Unit;
+
+@protocol UnitDelegate <NSObject>
+
+- (void)unitEngageInBattle:(Unit *)unit withEnemyUnit:(Unit*)enemyUnit;
+- (void)unitKilledInBattle:(Unit *)unit;
+
+@end
 
 @interface Unit : SKSpriteNode
 @property (nonatomic) RVOAgent *agent;
 @property (nonatomic) CGPoint goal;
-- (void)updateWithAgent;
+@property (nonatomic) Player *owner;
+@property (nonatomic) Unit *attackingUnit;
+@property (nonatomic) float HP;
+@property (nonatomic, weak) id <UnitDelegate> delegate;
+- (void)updateWithAgentWithDT:(float)delta;
+- (BOOL)engageInBattle:(Unit *)unit;
 @end

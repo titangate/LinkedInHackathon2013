@@ -10,15 +10,47 @@
 #import "RVOHub.h"
 #import "Unit.h"
 #import "TileMap.h"
+#import "Temple.h"
+
+@interface MyScene () <UnitDelegate>
+
+@end
 
 @implementation MyScene {
     RVOHub *hub;
     NSMutableArray *agents;
     TileMap *tileMap;
+    NSMutableArray *temples;
+    NSMutableArray *markToBeRemoved;
     SKNode *world;
+    CFTimeInterval lastFrameTime;
+    Player *player;
+    Player *enemy;
+}
+
+- (void)unitKilledInBattle:(Unit *)unit {
+    [markToBeRemoved addObject:unit];
+}
+
+- (void)unitEngageInBattle:(Unit *)unit withEnemyUnit:(Unit *)enemyUnit {
+    
+}
+
+- (Temple *)createTempleAtLocation:(CGPoint)location {
+    Temple *temple = [[Temple alloc]initWithImageNamed:@"temple"];
+    temple.agent = [hub createAgentAtPosition:location withRadius:32 withSpeed:0];
+    temple.agent.controller = temple;
+    temple.size = CGSizeMake(64, 64);
+    [world addChild:temple];
+    [temples addObject:temple];
+    return temple;
 }
 
 - (void)initDemo {
+    player = [[Player alloc]init];
+    enemy = [[Player alloc]init];
+    player.color = [UIColor redColor];
+    enemy.color = [UIColor blueColor];
     tileMap = [[TileMap alloc] init];
     world = [[SKNode alloc]init];
     [self addChild:world];
@@ -30,8 +62,20 @@
     for (NSInteger i = 0; i<30; i++) {
         Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
         unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
+        unit.agent.controller = unit;
         unit.size = CGSizeMake(32,32);
+        unit.owner = player;
+        unit.delegate = self;
+        [world addChild:unit];
+        [agents addObject:unit];
         
+        
+        unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
+        unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 400) withRadius:16.0 withSpeed:48.0];
+        unit.agent.controller = unit;
+        unit.size = CGSizeMake(32,32);
+        unit.owner = enemy;
+        unit.delegate = self;
         [world addChild:unit];
         [agents addObject:unit];
     }
@@ -47,6 +91,7 @@
     }
     RVOObstacle *obstacle = [hub createObstacleWithVerticies:array];
     [world addChild:obstacle];
+    [self createTempleAtLocation:CGPointMake(300, 300)].owner = enemy;
 }
 
 -(id)initWithSize:(CGSize)size {    
@@ -66,6 +111,8 @@
         
         [world addChild:myLabel];
         agents = [[NSMutableArray alloc]init];
+        temples = [[NSMutableArray alloc]init];
+        markToBeRemoved = [[NSMutableArray alloc]init];
         hub = [[RVOHub alloc]init];
         hub.timeStep = 0.1;
         [self initDemo];
@@ -75,23 +122,6 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    for (NSInteger i = 0; i<2; i++) {
-        Unit *unit = [agents objectAtIndex:0];
-        [unit removeFromParent];
-        [hub removeAgent:unit.agent];
-        [agents removeObject:unit];
-    }
-    if ([hub.obstacles count]) {
-        RVOObstacle *obstacle = [hub.obstacles objectAtIndex:0];
-        [hub removeObstacle:obstacle];
-        [obstacle removeFromParent];
-    }
-    Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
-    unit.agent = [hub createAgentAtPosition:CGPointMake(100, 100) withRadius:16.0 withSpeed:48.0];
-    unit.size = CGSizeMake(32,32);
-    
-    [world addChild:unit];
-    [agents addObject:unit];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:world];
         
@@ -110,9 +140,25 @@
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+    CFTimeInterval dt = currentTime - lastFrameTime;
+    if (dt > 0.1) {
+        dt = 0.1;
+    }
+    lastFrameTime = currentTime;
+    hub.timeStep = dt;
     [hub update];
     for (Unit *unit in agents) {
-        [unit updateWithAgent];
+        [unit updateWithAgentWithDT:dt];
+    }
+    for (Temple *unit in temples) {
+        [unit updateWithAgentWithDT:dt];
+    }
+    while ([markToBeRemoved count]) {
+        Unit *unit = [markToBeRemoved lastObject];
+        [unit removeFromParent];
+        [hub removeAgent:unit.agent];
+        [agents removeObject:unit];
+        [markToBeRemoved removeLastObject];
     }
 }
 
