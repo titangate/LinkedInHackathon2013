@@ -17,4 +17,5 @@
 
 + (BOOL) isObstacle:(int)x atY:(int)y;
 + (BOOL) isSlow:(int)x atY:(int)y;
+- (BOOL) makeWetAtX:(int)x atY:(int)y;
 @end
