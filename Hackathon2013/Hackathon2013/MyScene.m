@@ -48,17 +48,6 @@
     [temples addObject:temple];
     return temple;
 }
-
-- (RVOObstacle *)addObstacle:(CGPoint *)points count:(NSInteger)count {
-    NSMutableArray *array = [[NSMutableArray alloc]init];
-    for (NSInteger i = 0; i<count; i++) {
-        NSValue *value = [NSValue valueWithCGPoint:points[i]];
-        [array addObject:value];
-    }
-    RVOObstacle *obstacle = [hub createObstacleWithVerticies:array];
-    return obstacle;
-}
-
 - (void)initDemo {
     player = [[Player alloc]init];
     enemy = [[Player alloc]init];
@@ -68,12 +57,23 @@
     world = [[SKNode alloc]init];
     [self addChild:world];
     [world addChild:tileMap];
+    [tileMap drainAtX:16 atY:16];
+    [tileMap drainAtX:16 atY:16];
+    [tileMap drainAtX:16 atY:16];
+    [tileMap drainAtX:16 atY:16];
+    [tileMap drainAtX:16 atY:16];
+    [tileMap drainAtX:16 atY:16];
+    NSMutableArray *obstacles = [[NSMutableArray alloc]init];
+    NSArray * obs = [tileMap getConnectedComponents];
+    for(NSArray* ob in obs){
+        RVOObstacle *obstacle = [hub createObstacleWithVerticies:ob];
+        [obstacles addObject:obstacle];
+        [world addChild:obstacle];
+    }
+    
     //for(NSInteger i=0; i<32; i++){
         [tileMap makeDryAtX:0 atY:0];
     //}
-    /*[tileMap drainAtX:16 atY:16];
-    [tileMap drainAtX:16 atY:16];
-    [tileMap drainAtX:16 atY:16];*/
     for (NSInteger i = 0; i<30; i++) {
         Unit *unit = [[Unit alloc]initWithImageNamed:@"Spaceship"];
         unit.agent = [hub createAgentAtPosition:CGPointMake(100+ i *32, 100) withRadius:16.0 withSpeed:48.0];
@@ -94,22 +94,6 @@
         [world addChild:unit];
         [agents addObject:unit];
     }
-    CGPoint points[] = {
-        {200,200},
-        {300,200},
-        {300,300},
-        {200,300}
-    };
-    
-    RVOObstacle *obstacle = [self addObstacle:points count:4];
-    
-    RVOObstacle *obstacle2 = [self addObstacle:(CGPoint[]){
-        {500,300},
-        {400,200},
-        {600,300},
-    } count:3];
-    [world addChild:obstacle];
-    [world addChild:obstacle2];
     [self createTempleAtLocation:CGPointMake(100, 100)].owner = player;
     [self createTempleAtLocation:CGPointMake(500, 500)].owner = enemy;
     
@@ -117,8 +101,7 @@
     aiManager = [[AIManager alloc]init];
     aiManager.temples = temples;
     aiManager.players = @[player,enemy];
-    aiManager.obstacles = @[];
-    aiManager.obstacles = @[obstacle,obstacle2];
+    aiManager.obstacles = obstacles;
 }
 
 - (void)timerTicked {

@@ -92,7 +92,7 @@ static NSArray *sTileColors = nil;
 - (BOOL) makeWetAtX:(int)x atY:(int)y {
     int tileInd =[TileMap tileNumAtX:x atY:y];
     int tileType = [[sBackgroundTilesNums objectAtIndex:tileInd] integerValue];
-    if(tileType<=0){
+    if(tileType>=0){
         return false;
     }
     else{
@@ -108,7 +108,7 @@ static NSArray *sTileColors = nil;
 - (BOOL) makeDryAtX:(int)x atY:(int)y {
     int tileInd =[TileMap tileNumAtX:x atY:y];
     int tileType = [[sBackgroundTilesNums objectAtIndex:tileInd] integerValue];
-    if(tileType>=4){
+    if(tileType<=0){
         return false;
     }
     else{
@@ -231,7 +231,19 @@ static NSArray *sTileColors = nil;
             [res addObject: [TileMap calcConnCompAtX:p.x atY: p.y withUnEx: unexplored]];
         }
     }
-    return res;
+    NSMutableArray *finalRes = [[NSMutableArray alloc] initWithCapacity:4];
+    for(NSArray* a in res){
+        NSMutableArray* newA = [[NSMutableArray alloc] initWithCapacity:4];
+        for(NSValue* v in a){
+            CGPoint p;
+            [v getValue: &p];
+            CGPoint position = CGPointMake((p.x * kWorldTileSize) - kWorldCenter,
+                                           (kWorldSize - (p.y * kWorldTileSize)) - kWorldCenter);
+            [newA addObject:[NSValue valueWithCGPoint:position]];
+        }
+        [finalRes addObject:newA];
+    }
+    return finalRes;
 }
 
 + (NSArray*) calcConnCompAtX:(int)x atY:(int)y withUnEx: (NSMutableArray*)unexplored{
